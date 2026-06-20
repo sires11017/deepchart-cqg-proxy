@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSubscribeClass xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SubscribeClass>
+    <symb>CBOT</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>CBOTB</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>CBOTCM</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>CME</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>CMEFX</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>COMEX</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>EUREX</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>EUREX A</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>EUREX B</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>HKFE</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>IDEM</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+  <SubscribeClass>
+    <symb>NYMEX</symb>
+    <feedInd>1</feedInd>
+    <feedId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</feedId>
+  </SubscribeClass>
+</ArrayOfSubscribeClass>

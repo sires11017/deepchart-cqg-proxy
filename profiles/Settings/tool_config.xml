@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<ToolAllConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ToolConfig>
+    <ArrayOfToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FFFFFFFF" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>20</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF58550B" Web="" />
+        <IsExtended>false</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>true</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>WHITE</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>Line</CurrAnnType>
+      </ToolConfiguration>
+    </ArrayOfToolConfiguration>
+    <ArrayOfToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FFFF0000" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>20</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FFFF0000" Web="" />
+        <IsExtended>false</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>false</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>SELLERS ABS</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>Rectangle</CurrAnnType>
+      </ToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FF008000" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>20</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF008000" Web="" />
+        <IsExtended>false</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>false</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>BUYERS ABS</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>Rectangle</CurrAnnType>
+      </ToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FF808080" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>5</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#0A808080" Web="" />
+        <IsExtended>true</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>false</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>TPO LEVEL</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>Rectangle</CurrAnnType>
+      </ToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FF1E8DE7" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>5</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#0A6DBAF8" Web="" />
+        <IsExtended>true</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>false</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>KG1</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>Rectangle</CurrAnnType>
+      </ToolConfiguration>
+    </ArrayOfToolConfiguration>
+    <ArrayOfToolConfiguration />
+    <ArrayOfToolConfiguration />
+    <ArrayOfToolConfiguration />
+    <ArrayOfToolConfiguration />
+    <ArrayOfToolConfiguration />
+    <ArrayOfToolConfiguration />
+    <ArrayOfToolConfiguration />
+    <ArrayOfToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FFFFFFFF" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>100</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF000000" Web="" />
+        <IsExtended>false</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>18</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>true</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextMsg>Text</TextMsg>
+        <TextColor ParseARGB="#FFFFFFFF" Web="" />
+        <TextPadding>4</TextPadding>
+        <AnnParam />
+        <TCName>WHITE/B</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>Text</CurrAnnType>
+      </ToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FFFFFFFF" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>100</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF000000" Web="" />
+        <IsExtended>false</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>12</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>true</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextMsg>Area of possible reaction to the downside or use to continue higher </TextMsg>
+        <TextColor ParseARGB="#FFFFFFFF" Web="" />
+        <TextPadding>4</TextPadding>
+        <AnnParam />
+        <TCName>ANOTHER</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>Text</CurrAnnType>
+      </ToolConfiguration>
+    </ArrayOfToolConfiguration>
+    <ArrayOfToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FFFFFFFF" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>20</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF58550B" Web="" />
+        <IsExtended>true</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>true</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextMsg />
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>WHITE</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>HorizontalRay</CurrAnnType>
+      </ToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FFFFFFFF" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>20</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF58550B" Web="" />
+        <IsExtended>true</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>true</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextMsg>Squeeze</TextMsg>
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>SQUEEZE</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>HorizontalRay</CurrAnnType>
+      </ToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FF43A6F6" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>20</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF58550B" Web="" />
+        <IsExtended>true</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>false</ShowLabelBack>
+        <ShowPrice>false</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextMsg>Delta Print</TextMsg>
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>DELTA PRINT</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>HorizontalRay</CurrAnnType>
+      </ToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FFC9A1FA" Web="" />
+        <LineStyle>Solid</LineStyle>
+        <BackGroundOpacity>20</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF58550B" Web="" />
+        <IsExtended>true</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>true</ShowLabelBack>
+        <ShowPrice>false</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextMsg>OM</TextMsg>
+        <TextColor ParseARGB="#00FFFFFF" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <TCName>ORIGIN OF THE MOVE</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>HorizontalRay</CurrAnnType>
+      </ToolConfiguration>
+    </ArrayOfToolConfiguration>
+    <ArrayOfToolConfiguration>
+      <ToolConfiguration>
+        <LineWidth>2</LineWidth>
+        <LineColor ParseARGB="#FFBB44FF" Web="" />
+        <LineStyle>Dash</LineStyle>
+        <BackGroundOpacity>20</BackGroundOpacity>
+        <BackGroundColor ParseARGB="#FF58550B" Web="" />
+        <IsExtended>false</IsExtended>
+        <LineWidth2>2</LineWidth2>
+        <LineColor2 ParseARGB="#FFE73C3C" Web="" />
+        <LineStyle2>Solid</LineStyle2>
+        <FontSize>11</FontSize>
+        <ShowLabelBack>true</ShowLabelBack>
+        <ShowPrice>true</ShowPrice>
+        <ShowPercent>false</ShowPercent>
+        <ShowDifference>false</ShowDifference>
+        <LabelAlign>Left</LabelAlign>
+        <TextColor ParseARGB="#FF000000" Web="" />
+        <TextPadding>0</TextPadding>
+        <AnnParam />
+        <Money>
+          <IsLong>false</IsLong>
+          <QuantityMode>Fixed</QuantityMode>
+          <Quantity>1</Quantity>
+          <EnableBackground>true</EnableBackground>
+          <EnableStop>true</EnableStop>
+          <StopColor>
+            <A>15</A>
+            <R>255</R>
+            <G>34</G>
+            <B>102</B>
+            <ScA>0.05882353</ScA>
+            <ScR>1</ScR>
+            <ScG>0.0159962941</ScG>
+            <ScB>0.13286832</ScB>
+          </StopColor>
+          <StopMode>Ticks</StopMode>
+          <StopValue>60</StopValue>
+          <EnableTarget>true</EnableTarget>
+          <TargetColor>
+            <A>15</A>
+            <R>0</R>
+            <G>255</G>
+            <B>170</B>
+            <ScA>0.05882353</ScA>
+            <ScR>0</ScR>
+            <ScG>1</ScG>
+            <ScB>0.4019778</ScB>
+          </TargetColor>
+          <TargetMode>Ticks</TargetMode>
+          <TargetValue>180</TargetValue>
+          <LabelShowEntry>true</LabelShowEntry>
+          <LabelShowPnl>true</LabelShowPnl>
+          <LabelShowRR>true</LabelShowRR>
+          <LabelShowPriceAbs>false</LabelShowPriceAbs>
+          <LabelShowPriceOffset>true</LabelShowPriceOffset>
+        </Money>
+        <TCName>SIRES SHORTS</TCName>
+        <AlreadyStyled>true</AlreadyStyled>
+        <CurrAnnType>PosCalculator</CurrAnnType>
+      </ToolConfiguration>
+    </ArrayOfToolConfiguration>
+  </ToolConfig>
+  <IsNewVersion>true</IsNewVersion>
+</ToolAllConfig>

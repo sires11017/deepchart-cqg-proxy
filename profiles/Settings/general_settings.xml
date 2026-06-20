@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GeneralSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <general>
+    <Language>English</Language>
+    <ThemeMode>DarkStandard</ThemeMode>
+    <AlertSoundsProfile>Warzone</AlertSoundsProfile>
+    <AlertWorkTimeSales>SingleWorkspace</AlertWorkTimeSales>
+    <AlertWorkDrawingTools>SingleWorkspace</AlertWorkDrawingTools>
+    <MSRefreshChart>300</MSRefreshChart>
+    <MSRefreshTS>300</MSRefreshTS>
+    <MSRefreshDom>150</MSRefreshDom>
+    <MSRefreshAdvDom>150</MSRefreshAdvDom>
+    <MSRefreshScanner>750</MSRefreshScanner>
+    <ChartEditAnnFromOther>true</ChartEditAnnFromOther>
+    <ChartCursorDefault>Crosshair</ChartCursorDefault>
+    <ChartGlobalCrosshairAlwaysOn>false</ChartGlobalCrosshairAlwaysOn>
+    <ChartHandHoverDragXAndY>true</ChartHandHoverDragXAndY>
+    <ChartAxisYDefaultMoveMode>Resize</ChartAxisYDefaultMoveMode>
+    <ChartAnnotationsBlockLastBar>false</ChartAnnotationsBlockLastBar>
+    <StrategyFontSize>14</StrategyFontSize>
+    <ControlBarAlwaysOnTop>false</ControlBarAlwaysOnTop>
+    <DBFolder>%LOCALAPPDATA%\Deepchart\Database</DBFolder>
+    <ParallelGpuCount>1</ParallelGpuCount>
+    <AskScreenshotSave>true</AskScreenshotSave>
+    <ScreenshotMonitor>false</ScreenshotMonitor>
+    <CheckRealTimeDelay>true</CheckRealTimeDelay>
+    <SimStopEvaluation>BidAsk</SimStopEvaluation>
+    <TradingDiscardNearlySounds>true</TradingDiscardNearlySounds>
+    <EnableOrderSubmitted>true</EnableOrderSubmitted>
+    <OrderSubmittedAlert />
+    <EnableOrderFilled>true</EnableOrderFilled>
+    <OrderFilledAlert />
+    <EnableOrderCancelled>true</EnableOrderCancelled>
+    <OrderCancelledAlert />
+    <EnableOrderRejected>true</EnableOrderRejected>
+    <OrderRejectedAlert />
+    <EnableWindowHighlightOnFilled>true</EnableWindowHighlightOnFilled>
+    <HighlightSeconds>2</HighlightSeconds>
+    <HighlightColor>
+      <A>255</A>
+      <R>197</R>
+      <G>179</G>
+      <B>255</B>
+      <ScA>1</ScA>
+      <ScR>0.55834043</ScR>
+      <ScG>0.450785816</ScG>
+      <ScB>1</ScB>
+    </HighlightColor>
+    <SelectedTimeZone>Eastern Standard Time</SelectedTimeZone>
+  </general>
+  <AlertSounds />
+  <TradingQtyInfos>
+    <TradingSymbolQtyInfo>
+      <Name>NQ-CME</Name>
+      <DefQty>1</DefQty>
+      <IncrQty>2</IncrQty>
+      <BidAskTickDiff>0</BidAskTickDiff>
+    </TradingSymbolQtyInfo>
+    <TradingSymbolQtyInfo>
+      <Name>MNQ-CME</Name>
+      <DefQty>2</DefQty>
+      <IncrQty>2</IncrQty>
+      <BidAskTickDiff>0</BidAskTickDiff>
+    </TradingSymbolQtyInfo>
+  </TradingQtyInfos>
+  <MoneyManagments>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>CQG</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>Directa</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>dxFeedProp</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>FutuAPI</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>GainCapital</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>Giotto</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>IB</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>IWBank</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>MT4</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>MT5</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>Rithmic</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>Sella</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>SIM</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>Sphera</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>T3</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+    <MoneyManagmentSettings>
+      <EnableMoneyManagment>false</EnableMoneyManagment>
+      <MaxDrawDown>0</MaxDrawDown>
+      <MaxRunUp>0</MaxRunUp>
+      <MaxNumberOfTrades>0</MaxNumberOfTrades>
+      <IncludeAllCategory>true</IncludeAllCategory>
+      <ExcludeSymbolNotListed>false</ExcludeSymbolNotListed>
+      <FlatOnExceeded>false</FlatOnExceeded>
+      <EnablePartialDD>false</EnablePartialDD>
+      <MaxPartialDD>0</MaxPartialDD>
+      <PeriodPartialDD>0</PeriodPartialDD>
+      <WaitTimePartialDD>0</WaitTimePartialDD>
+      <EnableSingleMaxLoss>false</EnableSingleMaxLoss>
+      <MaxSingleLoss>0</MaxSingleLoss>
+      <WaitTimeSingleLoss>0</WaitTimeSingleLoss>
+      <SymbolQtys />
+      <LastDt>2026-06-18T00:00:00+01:00</LastDt>
+      <SelectedFeed>VolVirtual</SelectedFeed>
+      <ExchangeCategory>Future</ExchangeCategory>
+    </MoneyManagmentSettings>
+  </MoneyManagments>
+  <HotkeyShortcuts>
+    <HotKeyStore>
+      <Action>GEN_WORKSPACE_OPEN</Action>
+      <Combination>Ctrl Alt O</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>GEN_WORKSPACE_CLOSE</Action>
+      <Combination>Ctrl Alt C</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>GEN_WORKSPACE_PREVIOUS</Action>
+      <Combination>Ctrl Alt -</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>GEN_WORKSPACE_NEXT</Action>
+      <Combination>Ctrl Alt +</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>GEN_WORKSPACE_SAVE</Action>
+      <Combination>Ctrl Alt S</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>GEN_TAKE_SCREENSHOT</Action>
+      <Combination>Ctrl Alt I</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>GEN_DATA_RESET</Action>
+      <Combination>Ctrl Alt R</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_POINTER</Action>
+      <Combination>Alt P</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_CROSSHAIR</Action>
+      <Combination>Alt C</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_CROSSHAIR_GLOBAL</Action>
+      <Combination>Alt G</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_HAND</Action>
+      <Combination>Alt H</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_ZOOM_RANGE</Action>
+      <Combination>Alt R</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_LINE</Action>
+      <Combination>Shift L</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_HRZ_LINE</Action>
+      <Combination>Shift H</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_PRL_LINE</Action>
+      <Combination>Shift P</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_RECTAGLE</Action>
+      <Combination>Shift R</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_VOL_PROFILE</Action>
+      <Combination>Shift V</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_TEXT</Action>
+      <Combination>Shift T</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_FIBO_RETR</Action>
+      <Combination>Shift R</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_FIBO_FAN</Action>
+      <Combination>Shift F</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_BUY_CALC</Action>
+      <Combination>Shift B</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_SELL_CALC</Action>
+      <Combination>Shift S</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_CHANGE_TIMEFRAME</Action>
+      <Combination>Space</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_ERASE_ALL</Action>
+      <Combination>Ctrl ⌦</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_ANN_SNAP</Action>
+      <Combination>Ctrl S</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_SYMBOL_CHANGE</Action>
+      <Combination>Ctrl C</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_REBUILD</Action>
+      <Combination>Ctrl R</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_INDICATORS</Action>
+      <Combination>Ctrl I</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_PROPERTIES</Action>
+      <Combination>Ctrl P</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_MOVE_LEFT</Action>
+      <Combination>Ctrl ⇦</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_MOVE_RIGHT</Action>
+      <Combination>Ctrl ⇨</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_MOVE_LAST</Action>
+      <Combination>Ctrl Z</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_ZOOM_PLUS</Action>
+      <Combination>Ctrl +</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_ZOOM_MINUS</Action>
+      <Combination>Ctrl -</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_ENA</Action>
+      <Combination>Ctrl Alt T</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_PANEL</Action>
+      <Combination>Ctrl Alt P</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_HIST</Action>
+      <Combination>Ctrl Alt H</Combination>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_CROSSHAIR_WINDOW</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_RAY</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_VERT_LINE</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_DRAW_FIBO_PROJ</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_ANN_IMPORT</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_ANN_EXPORT</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_OCO</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_CANCEL_ALL</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_CAMCEL_FLAT_ALL</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_BUY_MKT</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_SELL_MKT</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_BUY_LMT</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_SELL_LMT</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_BUY_STP</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_SELL_STP</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_BUY_STP_LMT</Action>
+    </HotKeyStore>
+    <HotKeyStore>
+      <Action>CHART_TRADING_SELL_STP_LMT</Action>
+    </HotKeyStore>
+  </HotkeyShortcuts>
+</GeneralSettings>

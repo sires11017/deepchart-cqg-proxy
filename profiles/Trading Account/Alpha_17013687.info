@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TradingXMLInfoClass xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <symbList>
+    <XMLSymbInfo>
+      <Name>NQ-202606-CME</Name>
+      <DailyPL>-10505</DailyPL>
+      <lastDt>2026-06-10T14:30:20.5440527+01:00</lastDt>
+    </XMLSymbInfo>
+  </symbList>
+</TradingXMLInfoClass>

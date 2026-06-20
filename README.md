@@ -22,21 +22,32 @@ The `hosts` file redirects `demoapi.cqg.com` and `api.cqg.com` to your local mac
 
 ## Quick Start
 
-### One-Click Setup
+### 🚀 One Click — `start.bat`
+
+**Double-click `start.bat`** (Run as Administrator when prompted). That's it.
+
+It will:
+1. Find Python (auto-detects any installed version)
+2. Install required packages
+3. Set up the hosts file (redirect CQG domains to localhost)
+4. Run the patcher if `patched_run/` hasn't been created yet
+5. Start the proxy servers
+6. Launch Deepchart with your saved templates
+
+Just close the window to stop everything.
+
+### One-Click Setup (separate)
+
+If you want to run setup without launching:
 
 Right-click **`setup.ps1`** → **Run with PowerShell** (as Administrator). It will:
 
 1. Install Python dependencies
-2. Set up the hosts file (redirect CQG domains to localhost)
-3. Ask for your Deepchart installation folder and run the patcher
+2. Set up the hosts file
+3. Run the patcher (copies Deepchart + templates)
 4. Trust the MITM certificate
 
-The patcher (`patcher.ps1`) copies your Deepchart files into `patched_run/`, compiles the custom launcher (`Launcher.cs` → `Deepchart.exe`), and cleans up backup files.
-
-Then run **`start_servers.ps1`** (as Administrator) to launch everything:
-- Volumetrica Historical Server (port 12010)
-- Bridge MITM Proxy (port 443)
-- Patched Deepchart
+Then use `start.bat` anytime to launch.
 
 ### Manual Setup
 
@@ -46,9 +57,7 @@ pip install -r requirements.txt
 ```
 
 **2. Redirect CQG domains to your machine**
-Right-click **`fix_hosts.bat`** → Run as Administrator. This adds entries to your hosts file so CQG traffic goes through the proxy.
-
-Or manually add to `C:\Windows\System32\drivers\etc\hosts`:
+Right-click **`fix_hosts.bat`** → Run as Administrator. Or manually add to hosts:
 ```
 192.168.x.x  demoapi.cqg.com
 192.168.x.x  api.cqg.com
@@ -60,7 +69,7 @@ Or manually add to `C:\Windows\System32\drivers\etc\hosts`:
 ```powershell
 .\patcher.ps1 -DeepchartPath "C:\Program Files\Deepchart"
 ```
-This copies the original Deepchart files into `patched_run/` and compiles the custom launcher (`Launcher.cs`) into `patched_run/Deepchart.exe`.
+This copies Deepchart files into `patched_run/`, compiles the custom launcher, copies profiles (templates, workspaces, settings), and applies roaming config.
 
 **4. Start the servers**
 ```powershell
@@ -74,7 +83,7 @@ python vol_hist_server.py
 .\run_patched_deepchart.ps1
 ```
 
-**4. Configure Deepchart**
+**5. Configure Deepchart**
 - Go to Connections → Add New
 - Data Feed: **CQG**
 - Check **Use demo credentials**
@@ -95,7 +104,9 @@ python vol_hist_server.py
 | `toggle-proxy-hosts.bat` | Toggle hosts for using other trading software (MW, QT) |
 | `run_patched_deepchart.ps1` | Launches Deepchart with bridge |
 | `deepchart_watchdog.ps1` | Auto-restarts Deepchart if it crashes |
+| `start.bat` | **One-click launcher** — double-click and go |
 | `Start Deepchart.bat` | Simple batch launcher |
+| `profiles/` | User templates, workspaces, indicator configs, settings |
 
 ## Reconnection Behavior
 

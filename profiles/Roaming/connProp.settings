@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBrokerXmlClass xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BrokerXmlClass>
+    <ConnectionId>b21025aa-1c20-4ca1-92ad-783679b6fd9f</ConnectionId>
+    <Name>CQG Demo</Name>
+    <Broker>CQG</Broker>
+    <FeedProp>
+      <PropSaveClass>
+        <Name>Username</Name>
+        <Value xsi:type="xsd:string">YOUR_CQG_USERNAME</Value>
+      </PropSaveClass>
+      <PropSaveClass>
+        <Name>Password</Name>
+        <Value xsi:type="xsd:string">YOUR_CQG_PASSWORD</Value>
+      </PropSaveClass>
+      <PropSaveClass>
+        <Name>UseDemoCredential</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+      </PropSaveClass>
+      <PropSaveClass>
+        <Name>UseVolServer</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+      </PropSaveClass>
+      <PropSaveClass>
+        <Name>AutoConnect</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+      </PropSaveClass>
+    </FeedProp>
+  </BrokerXmlClass>
+</ArrayOfBrokerXmlClass>

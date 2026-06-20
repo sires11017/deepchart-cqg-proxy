@@ -93,6 +93,43 @@ if (Test-Path $launcherCs) {
     Write-Host "[!] Launcher.cs not found — cannot compile patched Deepchart.exe"
 }
 
+# ── Copy user profiles (templates, workspaces, settings) ────────────────────
+$profilesDir = Join-Path $root "profiles"
+$dataTarget = Join-Path $target "data"
+if (Test-Path $profilesDir) {
+    Write-Host "[*] Copying user profiles (templates/workspaces/settings)..."
+    # Copy each subdirectory in profiles/ into patched_run/data/
+    Get-ChildItem $profilesDir -Directory | ForEach-Object {
+        $dest = Join-Path $dataTarget $_.Name
+        Copy-Item -Path $_.FullName -Destination $dest -Recurse -Force -ErrorAction SilentlyContinue
+        Write-Host "    [+] $($_.Name)"
+    }
+    # Also copy individual files at root of profiles/
+    Get-ChildItem $profilesDir -File | ForEach-Object {
+        Copy-Item -Path $_.FullName -Destination $dataTarget -Force -ErrorAction SilentlyContinue
+    }
+    Write-Host "    [+] Profiles applied"
+} else {
+    Write-Host "  [-] No profiles/ directory found — skipping"
+}
+
+# ── Copy roaming config (APPDATA) — only if not already configured ───────────
+$roamingSrc = Join-Path $profilesDir "Roaming"
+$roamingDst = "$env:APPDATA\Deepchart"
+if (Test-Path $roamingSrc) {
+    $existingConfig = Join-Path $roamingDst "config.settings"
+    if (Test-Path $existingConfig) {
+        Write-Host "  [-] Roaming config already exists at $roamingDst — skipping"
+    } else {
+        Write-Host "[*] Applying roaming config (APPDATA\Deepchart)..."
+        New-Item -ItemType Directory -Path $roamingDst -Force -ErrorAction SilentlyContinue | Out-Null
+        Get-ChildItem $roamingSrc | ForEach-Object {
+            Copy-Item -Path $_.FullName -Destination $roamingDst -Force -ErrorAction SilentlyContinue
+            Write-Host "    [+] $($_.Name)"
+        }
+    }
+}
+
 # ── Done ────────────────────────────────────────────────────────────────────
 Write-Host ""
 Write-Host "============================================"
@@ -100,10 +137,13 @@ Write-Host " Patching complete!"
 Write-Host "============================================"
 Write-Host ""
 Write-Host "  patched_run is ready at: $target"
+Write-Host "  Profiles (templates/workspaces) installed"
 Write-Host ""
 Write-Host "Now run:"
-Write-Host "  1. setup.ps1 (install Python deps + hosts)"
-Write-Host "  2. start_servers.ps1 (launch everything)"
+Write-Host "  1. start.bat (one-click launcher — does everything)"
+Write-Host "  OR"
+Write-Host "  2. setup.ps1 (install Python deps + hosts)"
+Write-Host "  3. start_servers.ps1 (launch everything)"
 Write-Host ""
 
 if (-not $NoPause) { Read-Host "Press Enter to exit" }
