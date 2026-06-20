@@ -2,13 +2,5 @@
 <AppSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <EnableAlertSound>true</EnableAlertSound>
   <EnableAlertMessage>true</EnableAlertMessage>
-  <EnableAlertTrading>false</EnableAlertTrading>
-  <EnableAlertWebinar>false</EnableAlertWebinar>
-  <WorkspacesOpened>
-    <WorkspaceAutoStart>
-      <Name>Sires SF1</Name>
-      <FilePath>Workspace\Sires SF1.xmle</FilePath>
-    </WorkspaceAutoStart>
-  </WorkspacesOpened>
-  <WorkspaceSelected>Sires SF1</WorkspaceSelected>
+  <WorkspacesOpened />
 </AppSettings>

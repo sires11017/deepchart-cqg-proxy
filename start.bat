@@ -62,22 +62,20 @@ echo [4/8] Checking patched Deepchart...
 set "DC_PATH=%~dp0patched_run"
 if not exist "%DC_PATH%\Deepchart.exe" (
     echo    [*] Running patcher...
-    powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0patcher.ps1" -NoPause
+    powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0patcher.ps1" -NoPause 2>&1
     if not exist "%DC_PATH%\Deepchart.exe" (
-        echo    [!] Patcher failed. Run setup.ps1 manually first.
+        echo    [!] Patcher failed. Run patcher.ps1 manually first.
         pause
         exit /b 1
     )
 ) else ( echo    [+] Found at %DC_PATH% )
 
 :: ── Kill old processes ────────────────────────────────────────────────────
-echo [5/8] Stopping old processes...
+echo [5/8] Stopping old proxy processes only...
 for %%p in (VolumetricaBridge Deepchart) do (
     taskkill /F /IM %%p.exe >nul 2>&1
 )
-for /f "usebackq" %%a in (`wmic process where "name='python.exe' and (commandline like '%%bridge_mitm%%' or commandline like '%%vol_hist%%')" get processid 2^>nul ^| findstr /r "[0-9]"`) do (
-    taskkill /F /PID %%a >nul 2>&1
-)
+powershell -NoProfile -Command "Get-CimInstance Win32_Process -Filter \"Name = 'python.exe'\" | Where-Object { $$_.CommandLine -match 'bridge_mitm|vol_hist' } | ForEach-Object { Stop-Process -Id $$_.ProcessId -Force -ErrorAction SilentlyContinue }" >nul 2>&1
 timeout /t 2 /nobreak >nul
 
 :: ── Start servers ─────────────────────────────────────────────────────────

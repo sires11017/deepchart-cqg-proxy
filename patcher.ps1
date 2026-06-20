@@ -23,20 +23,29 @@ if (-not $DeepchartPath -or -not (Test-Path (Join-Path $DeepchartPath "Deepchart
     $tryPaths = @(
         "${env:LOCALAPPDATA}\Programs\Deepchart"
         "${env:ProgramFiles}\Deepchart"
+        "${env:PROGRAMW6432}\Deepchart"
         "${env:USERPROFILE}\Desktop\Deepchart"
         "${env:USERPROFILE}\Downloads\Deepchart"
         "C:\Deepchart"
+        "C:\Deepchart\patched_run"
     )
-    Write-Host "Where is Deepchart installed? Enter the folder path containing Deepchart.exe"
+    $found = $null
     foreach ($p in $tryPaths) {
-        if (Test-Path (Join-Path $p "Deepchart.exe")) { Write-Host "  (found at: $p)" }
+        if (Test-Path (Join-Path $p "Deepchart.exe")) { $found = $p; break }
     }
-    $input = Read-Host "Path"
-    if ([string]::IsNullOrWhiteSpace($input)) { exit 1 }
-    $DeepchartPath = $input
-    if (-not (Test-Path (Join-Path $DeepchartPath "Deepchart.exe"))) {
-        Write-Host "[!] Deepchart.exe not found at: $DeepchartPath"
-        exit 1
+    if ($found) {
+        Write-Host "  [+] Auto-detected Deepchart at: $found"
+        $DeepchartPath = $found
+    } else {
+        Write-Host "  Could not find Deepchart automatically."
+        Write-Host "  Enter the folder path where Deepchart.exe is located:"
+        $input = Read-Host "Path"
+        if ([string]::IsNullOrWhiteSpace($input)) { exit 1 }
+        $DeepchartPath = $input
+        if (-not (Test-Path (Join-Path $DeepchartPath "Deepchart.exe"))) {
+            Write-Host "[!] Deepchart.exe not found at: $DeepchartPath"
+            exit 1
+        }
     }
 }
 
