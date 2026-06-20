@@ -1,0 +1,3 @@
+@echo off
+echo Starting Deepchart Watchdog (auto-restarts on crash)...
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Normal -File \"%~dp0deepchart_watchdog.ps1\"' -Verb RunAs"

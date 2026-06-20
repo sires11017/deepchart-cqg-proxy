@@ -1,0 +1,42 @@
+# Logs
+logs/
+*.log
+
+# MITM certificates (auto-generated on first run)
+mitm_ca/
+*.pem
+*.key
+
+# Patched Deepchart binaries (DO NOT distribute copyrighted software)
+patched_run/
+*.exe
+*.dll
+*.pk12
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Config (user-specific)
+config.json
+
+# IDE / OS
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Backups
+*.bak*
+
+# AI agent session memory (local only)
+AGENTS.md
+MEMORY.md
