@@ -24,6 +24,11 @@ if (Test-Path $configPath) {
 
 # ── Find Python ───────────────────────────────────────────────────────────
 function Find-Python {
+    # Check portable Python bundled by start.bat
+    $portable = Join-Path $root "_python\python.exe"
+    if (Test-Path $portable) {
+        try { $ver = & $portable --version 2>&1; if ($ver -match "Python 3") { return $portable } } catch {}
+    }
     $candidates = @(
         "python", "python3"
         "C:\Python314\python.exe"

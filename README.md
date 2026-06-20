@@ -15,19 +15,20 @@ The `hosts` file redirects `demoapi.cqg.com` and `api.cqg.com` to your local mac
 ## Requirements
 
 - **Windows** PC (Deepchart runs on Windows only)
-- **Python 3.10+** (Python 3.14 recommended for best asyncio/IOCP support)
 - **Deepchart** already installed
 - **CQG demo account** (username/password from your broker)
 - **Administrator access** (needed to bind port 443 and edit the hosts file)
+
+No Python installation needed — `start.bat` downloads a portable Python automatically if not found.
 
 ## Quick Start
 
 ### 🚀 One Click — `start.bat`
 
-**Double-click `start.bat`** (Run as Administrator when prompted). That's it.
+**Download ZIP → Extract → Double-click `start.bat`** (accept Admin prompt). That's it.
 
 It will:
-1. Find Python (auto-detects any installed version)
+1. Find Python or **auto-download a portable copy** if not installed
 2. Install required packages
 3. Set up the hosts file (redirect CQG domains to localhost)
 4. Run the patcher if `patched_run/` hasn't been created yet

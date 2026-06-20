@@ -51,6 +51,10 @@ class Program
 
     static string FindPython()
     {
+        // Check portable Python bundled by start.bat
+        string portable = Path.Combine(ScriptsDir, "_python", "python.exe");
+        if (File.Exists(portable)) return portable;
+
         string[] candidates = { "python.exe", "python3.exe" };
         foreach (var c in candidates)
         {

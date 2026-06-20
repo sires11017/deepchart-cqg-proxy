@@ -15,26 +15,54 @@ echo   Deepchart CQG Proxy — One-Click Launcher
 echo ============================================
 echo.
 
-:: ── Find Python ───────────────────────────────────────────────────────────
-echo [1/8] Looking for Python...
+:: ── Find or download Python ──────────────────────────────────────────────
+echo [1/8] Setting up Python...
 set "PYTHON="
 for %%v in (python python3 py) do (
     for /f "delims=" %%a in ('where %%v 2^>nul') do (
         for /f "tokens=*" %%b in ('%%v --version 2^>^&1') do (
-            echo %%b | findstr /i "Python 3" >nul && set "PYTHON=%%v" && goto :python_found
+            echo %%b | findstr /i "Python 3" >nul && set "PYTHON=%%v" && goto :python_ready
         )
     )
 )
-for %%p in (C:\Python314 C:\Python313 C:\Python312 %ProgramFiles%\Python314 %ProgramFiles%\Python313 %LocalAppData%\Programs\Python\Python314 %LocalAppData%\Programs\Python\Python313) do (
-    if exist "%%p\python.exe" set "PYTHON=%%p\python.exe" && goto :python_found
+for %%p in (C:\Python314\python.exe C:\Python313\python.exe C:\Python312\python.exe "%ProgramFiles%\Python314\python.exe" "%ProgramFiles%\Python313\python.exe" "%LocalAppData%\Programs\Python\Python314\python.exe" "%LocalAppData%\Programs\Python\Python313\python.exe") do (
+    if exist %%p set "PYTHON=%%p" && goto :python_ready
 )
-:python_found
+
+:: Download embeddable Python if not installed
 if not defined PYTHON (
-    echo [!] Python not found. Install Python 3.14+ from https://www.python.org/downloads/
+    echo    [*] Python not found — downloading portable Python 3.14...
+    set "PYDIR=%~dp0_python"
+    if not exist "%PYDIR%" mkdir "%PYDIR%"
+    powershell -NoProfile -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.14.6/python-3.14.6-embed-amd64.zip' -OutFile '%TEMP%\_py.zip'" >nul 2>&1
+    if not exist "%TEMP%\_py.zip" (
+        echo    [!] Download failed. Install Python manually from https://www.python.org/downloads/
+        pause
+        exit /b 1
+    )
+    powershell -NoProfile -Command "Expand-Archive -Path '%TEMP%\_py.zip' -DestinationPath '%PYDIR%' -Force" >nul 2>&1
+    del "%TEMP%\_py.zip" 2>nul
+    :: Enable pip by removing import site restriction in python._pth
+    for %%f in ("%PYDIR%\python*._pth") do (
+        powershell -NoProfile -Command "(Get-Content '%%f') -replace '^import site$', '#import site' | Set-Content '%%f'"
+    )
+    :: Download get-pip.py and install pip
+    powershell -NoProfile -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://bootstrap.pypa.io/get-pip.py' -OutFile '%TEMP%\_getpip.py'" >nul 2>&1
+    "%PYDIR%\python.exe" "%TEMP%\_getpip.py" --quiet >nul 2>&1
+    del "%TEMP%\_getpip.py" 2>nul
+    set "PYTHON=%PYDIR%\python.exe"
+    echo    [+] Downloaded and configured portable Python at %PYDIR%
+    goto :python_ready
+)
+
+:python_ready
+"%PYTHON%" --version 2>&1 | findstr "Python 3" >nul
+if errorlevel 1 (
+    echo    [!] Python is not working at: %PYTHON%
     pause
     exit /b 1
 )
-echo    [+] Python: %PYTHON%
+for /f "tokens=*" %%v in ('"%PYTHON%" --version 2^>^&1') do echo    [+] Python: %%v
 
 :: ── Install dependencies ──────────────────────────────────────────────────
 echo [2/8] Installing Python packages...
@@ -64,7 +92,7 @@ if not exist "%DC_PATH%\Deepchart.exe" (
     echo    [*] Running patcher...
     powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0patcher.ps1" -NoPause 2>&1
     if not exist "%DC_PATH%\Deepchart.exe" (
-        echo    [!] Patcher failed. Run patcher.ps1 manually first.
+        echo    [!] Deepchart not found. Install Deepchart first, then run start.bat again.
         pause
         exit /b 1
     )

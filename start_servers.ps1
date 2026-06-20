@@ -11,6 +11,11 @@ if (-not $isAdmin) {
 
 # Find Python
 function Find-Python {
+    # Check portable Python bundled by start.bat
+    $portable = Join-Path $root "_python\python.exe"
+    if (Test-Path $portable) {
+        try { $v = & $portable --version 2>&1; if ($v -match "Python 3") { return $portable } } catch {}
+    }
     $candidates = @("python","python3","py")
     foreach ($ver in @("314","313","312","311","310")) {
         $candidates += "${env:ProgramFiles}\Python$ver\python.exe"

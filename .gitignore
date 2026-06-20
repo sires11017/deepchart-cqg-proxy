@@ -40,3 +40,6 @@ Thumbs.db
 # AI agent session memory (local only)
 AGENTS.md
 MEMORY.md
+
+# Portable Python (auto-downloaded by start.bat if needed)
+_python/
