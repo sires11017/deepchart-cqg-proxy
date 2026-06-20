@@ -7,11 +7,13 @@ mitm_ca/
 *.pem
 *.key
 
-# Patched Deepchart binaries (DO NOT distribute copyrighted software)
-patched_run/
+# Patched Deepchart binaries (private repo - included for easy multi-PC sync)
 *.exe
 *.dll
 *.pk12
+!patched_run/**/*.exe
+!patched_run/**/*.dll
+!patched_run/**/*.pk12
 
 # Python
 __pycache__/

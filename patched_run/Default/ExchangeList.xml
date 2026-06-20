@@ -1,0 +1,1763 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfExchangeElement xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ExchangeElement>
+    <Name>CME</Name>
+    <Abbreviation>CME</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>350</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:00:00</p_EndTimeProp>
+    <p_IniTimeProp>18:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDayOfWeek</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Third</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>US</Country>
+      <RollWindow>10</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MYY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>MYY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>EUREX</Name>
+    <Abbreviation>EUREX</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>22:00:00</p_EndTimeProp>
+    <p_IniTimeProp>01:15:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDayOfWeek</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Third</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>DE</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>YYMMDD</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MMYY</RithmicExpire>
+    <SellaExpire>MMYY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>FTSE MID</Name>
+    <Abbreviation>MID</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>true</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>true</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:39:59</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>08:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>17:30:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>EUREX A</Name>
+    <Abbreviation>EUREX A</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>19:00:00</p_EndTimeProp>
+    <p_IniTimeProp>08:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDay</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Next</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>10</ExpirationDayNum>
+      <DaysToAdd>-2</DaysToAdd>
+      <DaysAddType>ExcludeWeekends</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>DE</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>YYMMDD</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MMYY</RithmicExpire>
+    <SellaExpire>MMYY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>EUREX B</Name>
+    <Abbreviation>EUREX B</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>22:00:00</p_EndTimeProp>
+    <p_IniTimeProp>07:50:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDayOfWeek</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Third</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>DE</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>YYMMDD</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MMYY</RithmicExpire>
+    <SellaExpire>MMYY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>IDEM</Name>
+    <Abbreviation>IDEM</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>22:00:00</p_EndTimeProp>
+    <p_IniTimeProp>08:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDayOfWeek</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Third</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>IT</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>YI</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MMYY</SellaExpire>
+    <VolRTExpire>YI</VolRTExpire>
+    <WebankExpire>YI</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>INDEX US</Name>
+    <Abbreviation>INDEX US</Abbreviation>
+    <Category>Index</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>16:10:00</p_EndTimeProp>
+    <p_IniTimeProp>09:30:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MYY</IWBankExpire>
+    <MT5Expire>MYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>MOT</Name>
+    <Abbreviation>MOT</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:35:00</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>NYMEX</Name>
+    <Abbreviation>NYMEX</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>350</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:00:00</p_EndTimeProp>
+    <p_IniTimeProp>18:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDay</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>false</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>-2</DaysToAdd>
+      <DaysAddType>ExcludeWeekends</DaysAddType>
+      <January>true</January>
+      <February>true</February>
+      <March>true</March>
+      <April>true</April>
+      <May>true</May>
+      <June>true</June>
+      <July>true</July>
+      <August>true</August>
+      <Setptember>true</Setptember>
+      <October>true</October>
+      <November>true</November>
+      <December>true</December>
+      <Country>US</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MYY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>COMEX</Name>
+    <Abbreviation>COMEX</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>350</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:00:00</p_EndTimeProp>
+    <p_IniTimeProp>18:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Last</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>-2</DaysToAdd>
+      <DaysAddType>ExcludeWeekends</DaysAddType>
+      <January>false</January>
+      <February>true</February>
+      <March>false</March>
+      <April>true</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>true</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>US</Country>
+      <RollWindow>40</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MYY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>CBOT</Name>
+    <Abbreviation>CBOT</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>350</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:00:00</p_EndTimeProp>
+    <p_IniTimeProp>18:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDayOfWeek</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Third</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>US</Country>
+      <RollWindow>10</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MYY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>FOREX</Name>
+    <Abbreviation>FOREX</Abbreviation>
+    <Category>Forex</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>23:59:59</p_EndTimeProp>
+    <p_IniTimeProp>00:00:01</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>CME FX</Name>
+    <Abbreviation>CMEFX</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>350</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:00:00</p_EndTimeProp>
+    <p_IniTimeProp>18:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDayOfWeek</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Third</ExpirationOrdinal>
+      <ExpirationDayWeek>Wednesday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>-2</DaysToAdd>
+      <DaysAddType>ExcludeWeekends</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>GB</Country>
+      <RollWindow>10</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MYY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>CBOT BOND</Name>
+    <Abbreviation>CBOTB</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>350</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:00:00</p_EndTimeProp>
+    <p_IniTimeProp>18:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>ExcludeWeekends</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Last</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>-8</DaysToAdd>
+      <DaysAddType>ExcludeWeekends</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>US</Country>
+      <RollWindow>10</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MYY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>CBOT COMM</Name>
+    <Abbreviation>CBOTCM</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>350</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>14:20:00</p_EndTimeProp>
+    <p_IniTimeProp>18:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>SpecificDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>15</ExpirationDayNum>
+      <DaysToAdd>-1</DaysToAdd>
+      <DaysAddType>ExcludeWeekends</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>true</May>
+      <June>false</June>
+      <July>true</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>US</Country>
+      <RollWindow>30</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MYY</IWBankExpire>
+    <MT5Expire>LYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>MY</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>NYSE</Name>
+    <Abbreviation>NYSE</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>true</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>16:00:00</p_EndTimeProp>
+    <p_IniTimeProp>09:30:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>16:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>06:30:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>NASDAQ</Name>
+    <Abbreviation>NASDAQ</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>EasternStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>true</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>16:00:00</p_EndTimeProp>
+    <p_IniTimeProp>09:30:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>16:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>06:30:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>ETF BORSA ITALIANA</Name>
+    <Abbreviation>ETF ITA</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:30:00</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>FTSE MIB</Name>
+    <Abbreviation>MIB</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>true</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>true</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:39:59</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>08:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>17:30:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>FTSE SMALL</Name>
+    <Abbreviation>SMALL</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>true</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>true</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:39:59</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>08:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>17:30:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>FTSE ALL</Name>
+    <Abbreviation>FTSE ALL</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>true</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>true</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:39:59</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>08:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>17:30:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>FTSE AIM</Name>
+    <Abbreviation>AIM</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:39:59</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire />
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>FTSE STAR</Name>
+    <Abbreviation>STAR</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>true</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>true</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:39:59</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>08:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>17:30:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>MYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>FTSE GROWTH</Name>
+    <Abbreviation>GROWTH</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>WesternEuropeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>17:39:59</p_EndTimeProp>
+    <p_IniTimeProp>09:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>MYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>HKFE</Name>
+    <Abbreviation>HKFE</Abbreviation>
+    <Category>Future</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>SingaporeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts>
+      <TradingHaltElement>
+        <IniTime />
+        <EndTime />
+        <p_EndTimeProp>13:00:00</p_EndTimeProp>
+        <p_IniTimeProp>12:00:00</p_IniTimeProp>
+      </TradingHaltElement>
+      <TradingHaltElement>
+        <IniTime />
+        <EndTime />
+        <p_EndTimeProp>17:15:00</p_EndTimeProp>
+        <p_IniTimeProp>16:30:00</p_IniTimeProp>
+      </TradingHaltElement>
+    </TradingHalts>
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>03:00:00</p_EndTimeProp>
+    <p_IniTimeProp>09:15:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Last</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>-1</DaysToAdd>
+      <DaysAddType>ExcludeWeekends</DaysAddType>
+      <January>true</January>
+      <February>true</February>
+      <March>true</March>
+      <April>true</April>
+      <May>true</May>
+      <June>true</June>
+      <July>true</July>
+      <August>true</August>
+      <Setptember>true</Setptember>
+      <October>true</October>
+      <November>true</November>
+      <December>true</December>
+      <Country>HK</Country>
+      <RollWindow>10</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>MYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>HKEX</Name>
+    <Abbreviation>HKEX</Abbreviation>
+    <Category>Stock</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>true</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>false</UseUniqueFeedData>
+    <TimeZone>SingaporeStandard</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts>
+      <TradingHaltElement>
+        <IniTime />
+        <EndTime />
+        <p_EndTimeProp>13:00:00</p_EndTimeProp>
+        <p_IniTimeProp>12:00:00</p_IniTimeProp>
+      </TradingHaltElement>
+    </TradingHalts>
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>16:00:00</p_EndTimeProp>
+    <p_IniTimeProp>09:30:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>MYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>CRYPTO.PERP</Name>
+    <Abbreviation>CRYPRP</Abbreviation>
+    <Category>CryptoPerpetual</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Usd</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>true</UseUniqueFeedData>
+    <TimeZone>UTC</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>00:00:00</p_EndTimeProp>
+    <p_IniTimeProp>00:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>MYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>CRYPTO</Name>
+    <Abbreviation>CRYPTO</Abbreviation>
+    <Category>Crypto</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>true</UseUniqueFeedData>
+    <TimeZone>UTC</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>00:00:00</p_EndTimeProp>
+    <p_IniTimeProp>00:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>First</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>false</March>
+      <April>false</April>
+      <May>false</May>
+      <June>false</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>false</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>false</December>
+      <Country>AD</Country>
+      <RollWindow>8</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>MYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+  <ExchangeElement>
+    <Name>CRYPTO.FUT</Name>
+    <Abbreviation>CRYFUT</Abbreviation>
+    <Category>CryptoFuture</Category>
+    <NumLevDepth>20</NumLevDepth>
+    <Currency>Eur</Currency>
+    <UseDescriptionAsSymbolHeader>false</UseDescriptionAsSymbolHeader>
+    <UseUniqueFeedData>true</UseUniqueFeedData>
+    <TimeZone>UTC</TimeZone>
+    <IniTimeSession />
+    <EndTimeSession />
+    <EnableOpeningAuction>false</EnableOpeningAuction>
+    <OpeningAuctionTime />
+    <EnableClosingAuction>false</EnableClosingAuction>
+    <ClosingAuctionTime />
+    <TradingHalts />
+    <ExtendedTradingHours>false</ExtendedTradingHours>
+    <IniExtendedTimeSession />
+    <EndExtendedTimeSession />
+    <p_EndTimeProp>00:00:00</p_EndTimeProp>
+    <p_IniTimeProp>00:00:00</p_IniTimeProp>
+    <p_OpenAuctionTimeProp>00:00:00</p_OpenAuctionTimeProp>
+    <p_CloseAuctionTimeProp>00:00:00</p_CloseAuctionTimeProp>
+    <p_EndExtTimeProp>00:00:00</p_EndExtTimeProp>
+    <p_IniExtTimeProp>00:00:00</p_IniExtTimeProp>
+    <Rollover>
+      <ExpirationType>CalendarDay</ExpirationType>
+      <ExpirationDayType>Everyone</ExpirationDayType>
+      <ExpirationDayChoose>Precedent</ExpirationDayChoose>
+      <ExpirationWithinContractMonth>true</ExpirationWithinContractMonth>
+      <ExpiratioNextContractMonth>false</ExpiratioNextContractMonth>
+      <ExpirationOrdinal>Last</ExpirationOrdinal>
+      <ExpirationDayWeek>Friday</ExpirationDayWeek>
+      <ExpirationDayNum>25</ExpirationDayNum>
+      <DaysToAdd>0</DaysToAdd>
+      <DaysAddType>Everyone</DaysAddType>
+      <January>false</January>
+      <February>false</February>
+      <March>true</March>
+      <April>false</April>
+      <May>false</May>
+      <June>true</June>
+      <July>false</July>
+      <August>false</August>
+      <Setptember>true</Setptember>
+      <October>false</October>
+      <November>false</November>
+      <December>true</December>
+      <Country>US</Country>
+      <RollWindow>20</RollWindow>
+    </Rollover>
+    <DirectaExpire>MY</DirectaExpire>
+    <DxFeedExpire>MYY</DxFeedExpire>
+    <IWBankExpire>MY</IWBankExpire>
+    <MT5Expire>MYY</MT5Expire>
+    <RithmicExpire>MY</RithmicExpire>
+    <SellaExpire>MY</SellaExpire>
+    <VolRTExpire>IY</VolRTExpire>
+    <WebankExpire>YM</WebankExpire>
+  </ExchangeElement>
+</ArrayOfExchangeElement>
