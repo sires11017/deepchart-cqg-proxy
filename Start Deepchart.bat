@@ -23,10 +23,10 @@ echo [*] Starting Bridge Proxy (port 443)...
 start "Bridge Proxy" python "%~dp0bridge_mitm_proxy.py"
 timeout /t 3 /nobreak >nul
 
-:: Start VolumetricaBridge (try common paths)
-set "DC_PATH=C:\Deepchart\patched_run"
+:: Find patched Deepchart
+set "DC_PATH=%~dp0patched_run"
 if not exist "%DC_PATH%\Deepchart.exe" (
-    if exist "%~dp0patched_run\Deepchart.exe" set "DC_PATH=%~dp0patched_run"
+    if exist "C:\Deepchart\patched_run\Deepchart.exe" set "DC_PATH=C:\Deepchart\patched_run"
 )
 echo [*] Starting Deepchart from %DC_PATH%...
 start "VBridge" "%DC_PATH%\bridge\VolumetricaBridge.exe"

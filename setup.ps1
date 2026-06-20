@@ -94,12 +94,11 @@ if (Test-Path $hostsBat) {
     Write-Host "  [!] fix_hosts.bat not found — run it manually later."
 }
 
-# Step 4: Deepchart path
+# Step 4: Deepchart path + patcher
 Write-Host ""
-Write-Host "[4/5] Deepchart installation..."
+Write-Host "[4/5] Deepchart installation + patching..."
 $dcPath = if ($config.DeepchartPath) { $config.DeepchartPath } else { $null }
 if (-not $dcPath -or -not (Test-Path (Join-Path $dcPath "Deepchart.exe"))) {
-    $defaultPath = "C:\Deepchart\patched_run"
     $tryPaths = @(
         "C:\Deepchart\patched_run"
         "C:\Program Files\Deepchart"
@@ -107,12 +106,8 @@ if (-not $dcPath -or -not (Test-Path (Join-Path $dcPath "Deepchart.exe"))) {
         "${env:USERPROFILE}\Desktop\Deepchart"
         "${env:USERPROFILE}\Downloads\Deepchart"
     )
-    foreach ($p in $tryPaths) {
-        if (Test-Path (Join-Path $p "Deepchart.exe")) {
-            $defaultPath = $p
-            break
-        }
-    }
+    $defaultPath = $tryPaths | Where-Object { Test-Path (Join-Path $_ "Deepchart.exe") } | Select-Object -First 1
+    if (-not $defaultPath) { $defaultPath = "C:\Deepchart\patched_run" }
     Write-Host "  Enter the path to your Deepchart installation folder"
     Write-Host "  (where Deepchart.exe is located):"
     $input = Read-Host "  Path [$defaultPath]"
@@ -122,6 +117,12 @@ if (-not $dcPath -or -not (Test-Path (Join-Path $dcPath "Deepchart.exe"))) {
 if (Test-Path (Join-Path $dcPath "Deepchart.exe")) {
     Write-Host "  [+] Deepchart found at: $dcPath"
     @{ DeepchartPath = $dcPath } | ConvertTo-Json | Set-Content $configPath -Force
+    # Run patcher
+    $patcher = Join-Path $root "patcher.ps1"
+    if (Test-Path $patcher) {
+        Write-Host "  [*] Running patcher to create patched_run/ ..."
+        & $patcher -DeepchartPath $dcPath -NoPause
+    }
 } else {
     Write-Host "  [!] Deepchart.exe not found at: $dcPath"
     Write-Host "  You can still run the proxy servers — configure Deepchart path later."
@@ -153,12 +154,13 @@ Write-Host "============================================"
 Write-Host ""
 Write-Host "Quick start:"
 Write-Host "  1. Run 'start_servers.ps1' as Administrator to start everything"
+Write-Host "     (or 'Start Deepchart.bat' for a simpler launcher)"
 if ($dcPath) {
-    Write-Host "  2. Open Deepchart from: $dcPath"
+    Write-Host "  2. Deepchart will open automatically from patched_run/"
     Write-Host "  3. Add a connection: Data Feed = CQG, use demo credentials"
 }
 Write-Host ""
-Write-Host "Or use 'Start Deepchart.bat' for a simpler launcher."
+Write-Host "Already ran setup again? Just run 'patcher.ps1' to re-patch Deepchart."
 Write-Host ""
 
 if (-not $NoPause) { Read-Host "Press Enter to exit" }

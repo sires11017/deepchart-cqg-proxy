@@ -20,13 +20,23 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 PROXY_PORT          = 443
 LOGON_MIN_INTERVAL  = 15   # seconds to wait between LOGON messages
 _last_logon_time    = 0    # timestamp of last sent logon
-REAL_CQG_HOST       = "208.48.16.22"   # real CQG IP (bypasses hosts file to avoid loop)
+REAL_CQG_HOST       = None   # resolved from SNI_HOST below
 REAL_CQG_PORT       = 443
 SNI_HOST            = "demoapi.cqg.com"
 
 TARGET_PRIVATE_LABEL  = "AMPConnect"
 TARGET_CLIENT_APP_ID  = "AMPConnect"
 TARGET_CLIENT_VERSION = "7.0.238"
+
+# Resolve CQG IP dynamically to avoid hardcoding
+import socket as _socket
+if REAL_CQG_HOST is None:
+    try:
+        REAL_CQG_HOST = _socket.getaddrinfo(SNI_HOST, REAL_CQG_PORT, _socket.AF_INET)[0][4][0]
+        print(f"[*] Resolved {SNI_HOST} -> {REAL_CQG_HOST}")
+    except Exception:
+        REAL_CQG_HOST = "208.48.16.22"
+        print(f"[!] DNS resolution failed, using fallback {REAL_CQG_HOST}")
 
 CA_DIR   = os.path.join(os.path.dirname(__file__), "mitm_ca")
 CA_CERT  = os.path.join(CA_DIR, "ca.pem")

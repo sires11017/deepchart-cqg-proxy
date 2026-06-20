@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 class Program
@@ -8,22 +9,15 @@ class Program
     static string ScriptsDir;
     static string LogFile;
     static readonly object LogLock = new object();
-    static readonly string PythonExe = @"C:\Python314\python.exe";
-    static readonly string WhoamiExe = @"C:\Windows\System32\whoami.exe";
-    static readonly string PowershellExe = @"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe";
+    static string PythonExe;
 
     static void Main()
     {
-        // Find scripts directory
-        string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        string oneDriveDir = Path.Combine(userProfile, "OneDrive", "Documents", "1.Deepcharts");
-        ScriptsDir = Directory.Exists(oneDriveDir) ? oneDriveDir : AppDomain.CurrentDomain.BaseDirectory;
-
+        ScriptsDir = AppDomain.CurrentDomain.BaseDirectory;
         LogFile = Path.Combine(ScriptsDir, "logs", "launcher_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".log");
         Directory.CreateDirectory(Path.GetDirectoryName(LogFile));
-        Log("Launcher v2 starting from " + ScriptsDir);
+        Log("Launcher starting from " + ScriptsDir);
 
-        // Elevate to admin if not already
         if (!IsAdmin())
         {
             Log("Not admin — re-launching with elevation.");
@@ -33,44 +27,70 @@ class Program
                 UseShellExecute = true,
                 Verb = "runas"
             };
-            try
-            {
-                Process.Start(psi);
-                Log("Elevated instance launched. Exiting.");
-            }
-            catch (Exception ex)
-            {
-                Log("Elevation failed: " + ex.Message);
-            }
+            try { Process.Start(psi); Log("Elevated instance launched."); }
+            catch (Exception ex) { Log("Elevation failed: " + ex.Message); }
             return;
         }
 
         Log("Running as administrator.");
+        PythonExe = FindPython();
+        if (string.IsNullOrEmpty(PythonExe))
+        {
+            Log("Python not found. Aborting.");
+            return;
+        }
+        Log("Using Python: " + PythonExe);
 
-        // Kill old processes
         KillOld();
-
-        // Start Python servers
         StartPython("vol_hist_server.py", "Volumetrica Historical Server");
         StartPython("bridge_mitm_proxy.py", "Bridge MITM Proxy");
-
-        // Wait for bridge to bind
         Thread.Sleep(4000);
-
-        // Launch Deepchart stack
         LaunchDeepchart();
+        Log("Launcher done.");
+    }
 
-        Log("Launcher done. All services started.");
+    static string FindPython()
+    {
+        string[] candidates = { "python.exe", "python3.exe" };
+        foreach (var c in candidates)
+        {
+            try
+            {
+                var psi = new ProcessStartInfo(c, "--version")
+                {
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                };
+                var p = Process.Start(psi);
+                string ver = p.StandardOutput.ReadToEnd();
+                p.WaitForExit(2000);
+                if (ver.Contains("Python 3")) return c;
+            }
+            catch { }
+        }
+        string[] dirs = {
+            @"C:\Python314", @"C:\Python313", @"C:\Python312", @"C:\Python311",
+            Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Programs\Python"
+        };
+        foreach (var d in dirs)
+        {
+            foreach (var f in new[] { "python.exe", "python3.exe" })
+            {
+                string path = Path.Combine(d, f);
+                if (File.Exists(path)) return path;
+            }
+        }
+        return null;
     }
 
     static bool IsAdmin()
     {
         try
         {
-            var psi = new ProcessStartInfo
+            var psi = new ProcessStartInfo("whoami.exe", "/groups")
             {
-                FileName = WhoamiExe,
-                Arguments = "/groups",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = true
@@ -96,14 +116,13 @@ class Program
     {
         try
         {
-            bool isPython = file.EndsWith("python.exe", StringComparison.OrdinalIgnoreCase);
             var psi = new ProcessStartInfo
             {
                 FileName = file,
                 Arguments = args,
                 WorkingDirectory = workDir ?? ScriptsDir,
-                WindowStyle = isPython ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden,
-                CreateNoWindow = !isPython,
+                WindowStyle = ProcessWindowStyle.Hidden,
+                CreateNoWindow = true,
                 UseShellExecute = true
             };
             var proc = Process.Start(psi);
@@ -150,17 +169,15 @@ class Program
 
     static void LaunchDeepchart()
     {
-        string newRoot = @"C:\Deepchart\patched_run";
+        string newRoot = Path.Combine(ScriptsDir, "patched_run");
         string bridgeExe = Path.Combine(newRoot, "bridge", "VolumetricaBridge.exe");
         string appExe = Path.Combine(newRoot, "Deepchart.exe");
 
-        // Unblock files
         Log("Unblocking files...");
-        RunHidden(PowershellExe,
+        RunHidden("powershell.exe",
             "-NoProfile -Command \"Get-ChildItem '" + newRoot + "' -Recurse -File | Unblock-File -ErrorAction SilentlyContinue\"",
             null, "Unblock-File");
 
-        // Start VolumetricaBridge
         if (File.Exists(bridgeExe))
         {
             RunHidden(bridgeExe, "", Path.GetDirectoryName(bridgeExe), "VolumetricaBridge");
@@ -168,26 +185,18 @@ class Program
         else
         {
             Log("VolumetricaBridge.exe not found at " + bridgeExe);
-            string fallback = Path.Combine(ScriptsDir, "patched_run", "bridge", "VolumetricaBridge.exe");
-            if (File.Exists(fallback))
-                RunHidden(fallback, "", Path.GetDirectoryName(fallback), "VolumetricaBridge (fallback)");
         }
 
         Thread.Sleep(6000);
 
-        // Start Deepchart
         if (File.Exists(appExe))
         {
             RunHidden(appExe, "", Path.GetDirectoryName(appExe), "Deepchart");
-            Log("Deepchart launched successfully.");
+            Log("Deepchart launched.");
         }
         else
         {
             Log("Deepchart.exe not found at " + appExe);
-            string fallback = Path.Combine(ScriptsDir, "patched_run", "Deepchart.exe");
-            if (File.Exists(fallback))
-                RunHidden(fallback, "", Path.GetDirectoryName(fallback), "Deepchart (fallback)");
         }
     }
-
 }
