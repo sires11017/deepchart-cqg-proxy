@@ -9,15 +9,21 @@ if (-not $isAdmin) {
     Write-Host "[!] NOT running as Administrator — binding to port 443 will likely fail."
 }
 
-# Find Python
+# Find Python (prefer pythonw — no console window)
 function Find-Python {
-    # Check portable Python bundled by start.bat
-    $portable = Join-Path $root "_python\python.exe"
+    $portable = Join-Path $root "_python\pythonw.exe"
     if (Test-Path $portable) {
         try { $v = & $portable --version 2>&1; if ($v -match "Python 3") { return $portable } } catch {}
     }
-    $candidates = @("python","python3","py")
+    $portableExe = Join-Path $root "_python\python.exe"
+    if (Test-Path $portableExe) {
+        try { $v = & $portableExe --version 2>&1; if ($v -match "Python 3") { return $portableExe } } catch {}
+    }
+    $candidates = @("pythonw","python3w","python","python3","py")
     foreach ($ver in @("314","313","312","311","310")) {
+        $candidates += "${env:ProgramFiles}\Python$ver\pythonw.exe"
+        $candidates += "${env:LOCALAPPDATA}\Programs\Python\Python$ver\pythonw.exe"
+        $candidates += "C:\Python$ver\pythonw.exe"
         $candidates += "${env:ProgramFiles}\Python$ver\python.exe"
         $candidates += "${env:LOCALAPPDATA}\Programs\Python\Python$ver\python.exe"
         $candidates += "C:\Python$ver\python.exe"
@@ -25,14 +31,14 @@ function Find-Python {
     foreach ($c in $candidates) {
         try { $v = & $c --version 2>&1; if ($v -match "Python 3") { return (Get-Command $c -ErrorAction SilentlyContinue).Source } } catch {}
     }
-    return "python"
+    return "pythonw"
 }
 $pythonExe = Find-Python
 Write-Host "[+] Using Python: $pythonExe"
 
 # ── Kill any existing bridge / vol_hist / Deepchart / VolumetricaBridge ──
 Write-Host "[*] Killing existing bridge_mitm_proxy / vol_hist_server / Deepchart / VolumetricaBridge processes ..."
-Get-CimInstance Win32_Process -Filter "Name = 'python.exe' OR Name = 'python3.exe'" |
+Get-CimInstance Win32_Process -Filter "Name = 'python.exe' OR Name = 'python3.exe' OR Name = 'pythonw.exe' OR Name = 'python3w.exe'" |
   Where-Object { $_.CommandLine -match "bridge_mitm_proxy|vol_hist_server" } |
   ForEach-Object {
     Write-Host "  Killing PID $($_.ProcessId)"

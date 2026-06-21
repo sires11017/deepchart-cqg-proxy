@@ -1,76 +1,70 @@
 @echo off
-title Deepchart CQG Proxy
 cd /d "%~dp0"
 
-:: ── Auto-elevate to admin ──────────────────────────────────────────────────
+:: ── Worker mode: if --worker flag passed, skip to main logic ──────────────
+if "%1"=="--worker" goto :main
+
+:: ── Auto-elevate to admin (UAC prompt) ────────────────────────────────────
 net session >nul 2>&1
 if %errorLevel% neq 0 (
-    echo Requesting administrator privileges...
-    powershell -NoProfile -Command "Start-Process -Verb RunAs -FilePath '%~f0' -WindowStyle Normal"
+    powershell -NoProfile -Command "Start-Process -Verb RunAs -FilePath '%~f0' -WindowStyle Hidden"
     exit /b 0
 )
 
-echo ============================================
-echo   Deepchart CQG Proxy — One-Click Launcher
-echo ============================================
-echo.
+:: ── Re-launch as hidden background worker ─────────────────────────────────
+start /b "" cmd /c "%~f0 --worker >nul 2>&1"
+exit /b 0
 
-:: ── Find or download Python ──────────────────────────────────────────────
-echo [1/8] Setting up Python...
+:main
+:: ═══════════════════════════════════════════════════════════════════════════
+::  HIDDEN WORKER — No console windows will appear (except Deepchart)
+:: ═══════════════════════════════════════════════════════════════════════════
+
+:: ── Find or download Python (prefer pythonw) ──────────────────────────────
 set "PYTHON="
-for %%v in (python python3 py) do (
+set "PYTHONW="
+for %%v in (pythonw python3w py) do (
     for /f "delims=" %%a in ('where %%v 2^>nul') do (
         for /f "tokens=*" %%b in ('%%v --version 2^>^&1') do (
-            echo %%b | findstr /i "Python 3" >nul && set "PYTHON=%%v" && goto :python_ready
+            echo %%b | findstr /i "Python 3" >nul && set "PYTHONW=%%v" && goto :python_found
         )
     )
 )
-for %%p in (C:\Python314\python.exe C:\Python313\python.exe C:\Python312\python.exe "%ProgramFiles%\Python314\python.exe" "%ProgramFiles%\Python313\python.exe" "%LocalAppData%\Programs\Python\Python314\python.exe" "%LocalAppData%\Programs\Python\Python313\python.exe") do (
-    if exist %%p set "PYTHON=%%p" && goto :python_ready
+for %%p in (C:\Python314\pythonw.exe C:\Python313\pythonw.exe "%ProgramFiles%\Python314\pythonw.exe" "%ProgramFiles%\Python313\pythonw.exe" "%LocalAppData%\Programs\Python\Python314\pythonw.exe" "%LocalAppData%\Programs\Python\Python313\pythonw.exe") do (
+    if exist %%p set "PYTHONW=%%p" && goto :python_found
 )
-
-:: Download embeddable Python if not installed
-if not defined PYTHON (
-    echo    [*] Python not found — downloading portable Python 3.14...
+for %%v in (python python3 py) do (
+    for /f "delims=" %%a in ('where %%v 2^>nul') do (
+        for /f "tokens=*" %%b in ('%%v --version 2^>^&1') do (
+            echo %%b | findstr /i "Python 3" >nul && set "PYTHON=%%v" && goto :python_found
+        )
+    )
+)
+for %%p in (C:\Python314\python.exe C:\Python313\python.exe "%ProgramFiles%\Python314\python.exe" "%ProgramFiles%\Python313\python.exe" "%LocalAppData%\Programs\Python\Python314\python.exe" "%LocalAppData%\Programs\Python\Python313\python.exe") do (
+    if exist %%p set "PYTHON=%%p" && goto :python_found
+)
+if not defined PYTHONW if not defined PYTHON (
     set "PYDIR=%~dp0_python"
     if not exist "%PYDIR%" mkdir "%PYDIR%"
-    powershell -NoProfile -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.14.6/python-3.14.6-embed-amd64.zip' -OutFile '%TEMP%\_py.zip'" >nul 2>&1
-    if not exist "%TEMP%\_py.zip" (
-        echo    [!] Download failed. Install Python manually from https://www.python.org/downloads/
-        pause
-        exit /b 1
-    )
-    powershell -NoProfile -Command "Expand-Archive -Path '%TEMP%\_py.zip' -DestinationPath '%PYDIR%' -Force" >nul 2>&1
+    powershell -NoProfile -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.14.6/python-3.14.6-embed-amd64.zip' -OutFile '%TEMP%\_py.zip'"
+    powershell -NoProfile -Command "Expand-Archive -Path '%TEMP%\_py.zip' -DestinationPath '%PYDIR%' -Force"
     del "%TEMP%\_py.zip" 2>nul
-    :: Enable pip by removing import site restriction in python._pth
-    for %%f in ("%PYDIR%\python*._pth") do (
-        powershell -NoProfile -Command "(Get-Content '%%f') -replace '^import site$', '#import site' | Set-Content '%%f'"
-    )
-    :: Download get-pip.py and install pip
-    powershell -NoProfile -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://bootstrap.pypa.io/get-pip.py' -OutFile '%TEMP%\_getpip.py'" >nul 2>&1
+    for %%f in ("%PYDIR%\python*._pth") do powershell -NoProfile -Command "(Get-Content '%%f') -replace '^import site$', '#import site' | Set-Content '%%f'"
     "%PYDIR%\python.exe" "%TEMP%\_getpip.py" --quiet >nul 2>&1
     del "%TEMP%\_getpip.py" 2>nul
     set "PYTHON=%PYDIR%\python.exe"
-    echo    [+] Downloaded and configured portable Python at %PYDIR%
+    set "PYTHONW=%PYDIR%\pythonw.exe"
+    if not exist "%PYTHONW%" set "PYTHONW=%PYTHON%"
     goto :python_ready
 )
+:python_found
+if not defined PYTHONW set "PYTHONW=%PYTHON%"
+if not defined PYTHON set "PYTHON=%PYTHONW%"
 
 :python_ready
-"%PYTHON%" --version 2>&1 | findstr "Python 3" >nul
-if errorlevel 1 (
-    echo    [!] Python is not working at: %PYTHON%
-    pause
-    exit /b 1
-)
-for /f "tokens=*" %%v in ('"%PYTHON%" --version 2^>^&1') do echo    [+] Python: %%v
-
-:: ── Install dependencies ──────────────────────────────────────────────────
-echo [2/8] Installing Python packages...
 "%PYTHON%" -m pip install -r "%~dp0requirements.txt" >nul 2>&1
-if %errorLevel% equ 0 ( echo    [+] Dependencies installed ) else ( echo    [!] pip install failed )
 
 :: ── Fix hosts ─────────────────────────────────────────────────────────────
-echo [3/8] Updating hosts file...
 for /f "tokens=3 delims=: " %%i in ('netsh interface ip show addresses ^| findstr "IP Address" ^| findstr /v "127.0.0.1"') do set "LOCAL_IP=%%i" & goto :ip_found
 for /f "tokens=3 delims=: " %%a in ('ipconfig ^| findstr /i "IPv4"') do if not defined LOCAL_IP set "LOCAL_IP=%%a"
 :ip_found
@@ -83,82 +77,42 @@ powershell -NoProfile -Command ^
   "foreach($x in $d){$c=$c -replace '(?m)^\d+\.\d+\.\d+\.\d+\s+'+$x.Replace('.','\.')+'[ \t]*(\r?\n|$)',''}" ^
   "foreach($x in $d){$c+=\"`r`n$ip  $x\"}" ^
   "Set-Content $h -Value $c -Force"
-echo    [+] Hosts updated (IP: %LOCAL_IP%)
 
 :: ── Check patched_run ────────────────────────────────────────────────────
-echo [4/8] Checking patched Deepchart...
 set "DC_PATH=%~dp0patched_run"
 if not exist "%DC_PATH%\Deepchart.exe" (
-    echo    [*] Running patcher...
-    powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0patcher.ps1" -NoPause 2>&1
-    if not exist "%DC_PATH%\Deepchart.exe" (
-        echo    [!] Deepchart not found. Install Deepchart first, then run start.bat again.
-        pause
-        exit /b 1
-    )
-) else ( echo    [+] Found at %DC_PATH% )
-
-:: ── Apply profiles (templates, colors, settings, workspaces) ─────────────
-echo [5/8] Applying user profiles...
-powershell -NoProfile -Command ^
-  "$r='%~dp0';" ^
-  "$p=Join-Path $r 'profiles';" ^
-  "$t=Join-Path $r 'patched_run\data';" ^
-  "if(Test-Path $p){" ^
-    "New-Item $t -ItemType Directory -Force|Out-Null;" ^
-    "Get-ChildItem $p -Directory|ForEach-Object{" ^
-      "$d=Join-Path $t $_.Name;" ^
-      "Copy-Item $_.FullName $d -Recurse -Force;" ^
-    "};" ^
-    "Get-ChildItem $p -File|ForEach-Object{" ^
-      "Copy-Item $_.FullName $t -Force;" ^
-    "};" ^
-    "Write-Host '   [+] Templates, workspaces, settings applied' -ForegroundColor Green;" ^
-  "}else{Write-Host '   [-] No profiles/ found'}"
-powershell -NoProfile -Command ^
-  "$r='%~dp0';" ^
-  "$s=Join-Path $r 'profiles\Roaming';" ^
-  "$d=\"$env:APPDATA\Deepchart\";" ^
-  "if(Test-Path $s){" ^
-    "New-Item $d -ItemType Directory -Force|Out-Null;" ^
-    "Get-ChildItem $s|ForEach-Object{" ^
-      "Copy-Item $_.FullName $d -Force;" ^
-    "};" ^
-    "Write-Host '   [+] Roaming config applied' -ForegroundColor Green;" ^
-  "}else{Write-Host '   [-] No profiles/Roaming/ found'}"
-
-:: ── Kill old processes ────────────────────────────────────────────────────
-echo [6/9] Stopping old proxy processes only...
-for %%p in (VolumetricaBridge Deepchart) do (
-    taskkill /F /IM %%p.exe >nul 2>&1
+    powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0patcher.ps1" -NoPause 2>&1 >nul
+    if not exist "%DC_PATH%\Deepchart.exe" exit /b 1
 )
-powershell -NoProfile -Command "Get-CimInstance Win32_Process -Filter \"Name = 'python.exe'\" | Where-Object { $$_.CommandLine -match 'bridge_mitm|vol_hist' } | ForEach-Object { Stop-Process -Id $$_.ProcessId -Force -ErrorAction SilentlyContinue }" >nul 2>&1
+
+:: ── Apply profiles ────────────────────────────────────────────────────────
+powershell -NoProfile -Command ^
+  "$r='%~dp0';$p=Join-Path $r 'profiles';$t=Join-Path $r 'patched_run\data';" ^
+  "if(Test-Path $p){New-Item $t -ItemType Directory -Force|Out-Null;" ^
+    "Get-ChildItem $p -Directory|ForEach-Object{Copy-Item $_.FullName (Join-Path $t $_.Name) -Recurse -Force};" ^
+    "Get-ChildItem $p -File|ForEach-Object{Copy-Item $_.FullName $t -Force}}"
+powershell -NoProfile -Command ^
+  "$s=Join-Path '%~dp0' 'profiles\Roaming';$d=\"$env:APPDATA\Deepchart\";" ^
+  "if(Test-Path $s){New-Item $d -ItemType Directory -Force|Out-Null;Get-ChildItem $s|ForEach-Object{Copy-Item $_.FullName $d -Force}}"
+
+:: ── Kill ALL python / pythonw processes ──────────────────────────────────
+taskkill /F /IM python.exe >nul 2>&1
+taskkill /F /IM pythonw.exe >nul 2>&1
+taskkill /F /IM VolumetricaBridge.exe >nul 2>&1
+taskkill /F /IM Deepchart.exe >nul 2>&1
 timeout /t 2 /nobreak >nul
 
-:: ── Start servers ─────────────────────────────────────────────────────────
-echo [7/9] Starting proxy servers...
-
-start "Hist Server" "%PYTHON%" "%~dp0vol_hist_server.py"
-echo    [+] Historical Server starting...
+:: ── Start servers (pythonw = no console) ─────────────────────────────────
+start "" "%PYTHONW%" "%~dp0vol_hist_server.py"
 timeout /t 3 /nobreak >nul
 
-start "Bridge Proxy" "%PYTHON%" "%~dp0bridge_mitm_proxy.py"
-echo    [+] Bridge Proxy starting...
+start "" "%PYTHONW%" "%~dp0bridge_mitm_proxy.py"
 timeout /t 3 /nobreak >nul
 
-:: ── Launch VolumetricaBridge ──────────────────────────────────────────────
-echo [8/9] Launching VolumetricaBridge...
-start "VBridge" "%DC_PATH%\bridge\VolumetricaBridge.exe"
+:: ── Launch VolumetricaBridge (hidden) ─────────────────────────────────────
+powershell -NoProfile -Command "Start-Process -WindowStyle Hidden -FilePath '%DC_PATH%\bridge\VolumetricaBridge.exe'"
 timeout /t 6 /nobreak >nul
 
-:: ── Launch Deepchart ──────────────────────────────────────────────────────
-echo [9/9] Launching Deepchart...
-start "Deepchart" "%DC_PATH%\Deepchart.exe"
-
-echo.
-echo ============================================
-echo   All services running!
-echo   Close this window to stop everything.
-echo ============================================
-echo.
+:: ── Launch Deepchart (visible — the only window the user sees) ────────────
+start "" "%DC_PATH%\Deepchart.exe"
 timeout /t 5 /nobreak >nul
