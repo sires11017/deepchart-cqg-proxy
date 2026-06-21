@@ -22,17 +22,17 @@ exit /b 0
 
 :: ── Step 0: Resolve upstream IPs BEFORE hosts redirect ──────────────────────
 :: Use nslookup with public DNS (bypasses hosts file) to get real IPs
-for /f "tokens=2 delims=:" %%a in ('nslookup demoapi.cqg.com 8.8.8.8 2^>nul ^| findstr /C:"Address:" ^| findstr /V /C:"#"') do set "CQG_UPSTREAM_IP=%%a"
+for /f "tokens=2 delims=:" %%a in ('nslookup demoapi.cqg.com 8.8.8.8 2^>nul ^| findstr /C:"Address:" ^| findstr /V /C:"8.8.8.8"') do set "CQG_UPSTREAM_IP=%%a"
 if defined CQG_UPSTREAM_IP set "CQG_UPSTREAM_IP=%CQG_UPSTREAM_IP: =%"
 if not defined CQG_UPSTREAM_IP set "CQG_UPSTREAM_IP=208.48.16.22"
-for /f "tokens=2 delims=:" %%a in ('nslookup depth-it.historical.deepcharts.com 8.8.8.8 2^>nul ^| findstr /C:"Address:" ^| findstr /V /C:"#"') do set "HIST_UPSTREAM_IP=%%a"
+for /f "tokens=2 delims=:" %%a in ('nslookup depth-it.historical.deepcharts.com 8.8.8.8 2^>nul ^| findstr /C:"Address:" ^| findstr /V /C:"8.8.8.8"') do set "HIST_UPSTREAM_IP=%%a"
 if defined HIST_UPSTREAM_IP set "HIST_UPSTREAM_IP=%HIST_UPSTREAM_IP: =%"
 if not defined HIST_UPSTREAM_IP set "HIST_UPSTREAM_IP=%CQG_UPSTREAM_IP%"
 
 :: ── Find or download Python (prefer pythonw) ─────────────────────────────────
 set "PYTHON="
 set "PYTHONW="
-for %%v in (pythonw python3w py) do (
+for %%v in (pythonw python3w) do (
     for /f "delims=" %%a in ('where %%v 2^>nul') do (
         for /f "tokens=*" %%b in ('%%v --version 2^>^&1') do (
             echo %%b | findstr /i "Python 3" >nul && set "PYTHONW=%%v" && goto :python_found
@@ -101,10 +101,6 @@ powershell -NoProfile -Command ^
   "if(Test-Path $p){New-Item $t -ItemType Directory -Force|Out-Null;" ^
     "Get-ChildItem $p -Directory|ForEach-Object{Copy-Item $_.FullName (Join-Path $t $_.Name) -Recurse -Force};" ^
     "Get-ChildItem $p -File|ForEach-Object{Copy-Item $_.FullName $t -Force}}"
-powershell -NoProfile -Command ^
-  "$s=Join-Path '%~dp0' 'profiles\Roaming';$d=\"$env:APPDATA\Deepchart\";" ^
-  "if(Test-Path $s){New-Item $d -ItemType Directory -Force|Out-Null;Get-ChildItem $s|ForEach-Object{Copy-Item $_.FullName $d -Force}}"
-
 :: ── Kill all old processes ──────────────────────────────────────────────────
 taskkill /F /IM python.exe >nul 2>&1
 taskkill /F /IM pythonw.exe >nul 2>&1

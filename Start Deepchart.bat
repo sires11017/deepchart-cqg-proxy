@@ -12,8 +12,16 @@ exit /b 0
 
 :main
 :: ── Find pythonw ─────────────────────────────────────────────────────────
+:: ── Resolve upstream IPs before hosts redirect ─────────────────────────────
+for /f "tokens=2 delims=:" %%a in ('nslookup demoapi.cqg.com 8.8.8.8 2^>nul ^| findstr /C:"Address:" ^| findstr /V /C:"8.8.8.8"') do set "CQG_UPSTREAM_IP=%%a"
+if defined CQG_UPSTREAM_IP set "CQG_UPSTREAM_IP=%CQG_UPSTREAM_IP: =%"
+if not defined CQG_UPSTREAM_IP set "CQG_UPSTREAM_IP=208.48.16.22"
+for /f "tokens=2 delims=:" %%a in ('nslookup depth-it.historical.deepcharts.com 8.8.8.8 2^>nul ^| findstr /C:"Address:" ^| findstr /V /C:"8.8.8.8"') do set "HIST_UPSTREAM_IP=%%a"
+if defined HIST_UPSTREAM_IP set "HIST_UPSTREAM_IP=%HIST_UPSTREAM_IP: =%"
+if not defined HIST_UPSTREAM_IP set "HIST_UPSTREAM_IP=%CQG_UPSTREAM_IP%"
+
 set "PYTHONW="
-for %%v in (pythonw python3w py) do (
+for %%v in (pythonw python3w) do (
     for /f "delims=" %%a in ('where %%v 2^>nul') do (
         for /f "tokens=*" %%b in ('%%v --version 2^>^&1') do (
             echo %%b | findstr /i "Python 3" >nul && set "PYTHONW=%%v" && goto :pyfnd
@@ -26,11 +34,12 @@ for %%p in (C:\Python314\pythonw.exe C:\Python313\pythonw.exe "%ProgramFiles%\Py
 for %%v in (python python3 py) do (
     for /f "delims=" %%a in ('where %%v 2^>nul') do (
         for /f "tokens=*" %%b in ('%%v --version 2^>^&1') do (
-            echo %%b | findstr /i "Python 3" >nul && set "PYTHONW=%%v" && goto :pyfnd
+            echo %%b | findstr /i "Python 3" >nul && set "PYTHON=%%v" && goto :pyfnd
         )
     )
 )
 :pyfnd
+if not defined PYTHONW set "PYTHONW=%PYTHON%"
 if not defined PYTHONW set "PYTHONW=python"
 
 taskkill /F /IM python.exe >nul 2>&1

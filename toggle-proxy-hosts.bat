@@ -39,7 +39,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command ^
       "Write-Host \"[$e] - ADDED\"" ^
     "}" ^
   "}" ^
-  "$content | Out-File $path -Encoding Default -Force;"
+   "$content | Set-Content $path -Force;"
 
 if %errorlevel% equ 0 (
     echo Done. Toggle hosts for other trading software, then re-run to use Deepchart.
