@@ -70,20 +70,20 @@ echo [2/8] Installing Python packages...
 if %errorLevel% equ 0 ( echo    [+] Dependencies installed ) else ( echo    [!] pip install failed )
 
 :: ── Fix hosts ─────────────────────────────────────────────────────────────
-echo [3/8] Checking hosts file...
-set "HOSTS=%windir%\System32\drivers\etc\hosts"
-findstr /i "demoapi.cqg.com" "%HOSTS%" >nul 2>&1
-if %errorLevel% neq 0 (
-    echo    [*] Adding CQG domains to hosts file...
-    for /f "tokens=3 delims=: " %%i in ('netsh interface ip show addresses ^| findstr "IP Address" ^| findstr /v "127.0.0.1"') do set "LOCAL_IP=%%i" & goto :ip_found
-    for /f "tokens=3 delims=: " %%a in ('ipconfig ^| findstr /i "IPv4"') do if not defined LOCAL_IP set "LOCAL_IP=%%a"
-    :ip_found
-    if not defined LOCAL_IP set "LOCAL_IP=127.0.0.1"
-    powershell -NoProfile -Command "$h='%HOSTS%'; $ip='%LOCAL_IP%'; $e=@(\"$ip  demoapi.cqg.com\",\"$ip  api.cqg.com\",\"$ip  depth-it.historical.deepcharts.com\",\"$ip  data-b.historical.deepcharts.com\"); $c=Get-Content $h -Raw; foreach($x in $e){if($c -notmatch [regex]::Escape($x)){$c+=\"`r`n$x\"}}; Set-Content $h -Value $c -Force"
-    echo    [+] Hosts updated (IP: %LOCAL_IP%)
-) else (
-    echo    [+] Hosts already configured
-)
+echo [3/8] Updating hosts file...
+for /f "tokens=3 delims=: " %%i in ('netsh interface ip show addresses ^| findstr "IP Address" ^| findstr /v "127.0.0.1"') do set "LOCAL_IP=%%i" & goto :ip_found
+for /f "tokens=3 delims=: " %%a in ('ipconfig ^| findstr /i "IPv4"') do if not defined LOCAL_IP set "LOCAL_IP=%%a"
+:ip_found
+if not defined LOCAL_IP set "LOCAL_IP=127.0.0.1"
+powershell -NoProfile -Command ^
+  "$h=Join-Path ([Environment]::SystemDirectory) 'drivers\etc\hosts';" ^
+  "$ip='%LOCAL_IP%';" ^
+  "$d=@('demoapi.cqg.com','api.cqg.com','depth-it.historical.deepcharts.com','data-b.historical.deepcharts.com');" ^
+  "$c=Get-Content $h -Raw;" ^
+  "foreach($x in $d){$c=$c -replace '(?m)^\d+\.\d+\.\d+\.\d+\s+'+$x.Replace('.','\.')+'[ \t]*(\r?\n|$)',''}" ^
+  "foreach($x in $d){$c+=\"`r`n$ip  $x\"}" ^
+  "Set-Content $h -Value $c -Force"
+echo    [+] Hosts updated (IP: %LOCAL_IP%)
 
 :: ── Check patched_run ────────────────────────────────────────────────────
 echo [4/8] Checking patched Deepchart...
