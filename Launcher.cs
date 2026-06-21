@@ -51,11 +51,12 @@ class Program
 
     static string FindPython()
     {
-        // Check portable Python bundled by start.bat
-        string portable = Path.Combine(ScriptsDir, "_python", "python.exe");
+        string portable = Path.Combine(ScriptsDir, "_python", "pythonw.exe");
+        if (File.Exists(portable)) return portable;
+        portable = Path.Combine(ScriptsDir, "_python", "python.exe");
         if (File.Exists(portable)) return portable;
 
-        string[] candidates = { "python.exe", "python3.exe" };
+        string[] candidates = { "pythonw.exe", "python3w.exe", "python.exe", "python3.exe" };
         foreach (var c in candidates)
         {
             try
@@ -73,14 +74,14 @@ class Program
             }
             catch { }
         }
-        string[] dirs = {
+        string[] roots = {
             @"C:\Python314", @"C:\Python313", @"C:\Python312", @"C:\Python311",
             Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Programs\Python"
         };
-        foreach (var d in dirs)
+        foreach (var d in roots)
         {
-            foreach (var f in new[] { "python.exe", "python3.exe" })
+            foreach (var f in new[] { "pythonw.exe", "python.exe", "python3.exe" })
             {
                 string path = Path.Combine(d, f);
                 if (File.Exists(path)) return path;
@@ -141,9 +142,12 @@ class Program
     static void KillOld()
     {
         Log("Killing old processes...");
-        foreach (var proc in Process.GetProcessesByName("python"))
+        foreach (var name in new[] { "python", "pythonw", "python3", "python3w" })
         {
-            try { proc.Kill(); Log("  Killed python PID " + proc.Id); } catch { }
+            foreach (var proc in Process.GetProcessesByName(name))
+            {
+                try { proc.Kill(); Log("  Killed " + name + " PID " + proc.Id); } catch { }
+            }
         }
         foreach (string name in new[] { "Deepchart", "VolumetricaBridge" })
         {

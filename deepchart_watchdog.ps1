@@ -4,18 +4,19 @@ $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 # ── Auto-detect Python ──────────────────────────────────────────────────
 function Find-Python {
-    $candidates = @("python","python3","py")
-    foreach ($ext in @("",".exe")) {
-        foreach ($ver in @("314","313","312","311","310")) {
-            $candidates += "${env:ProgramFiles}\Python$ver\python.exe"
-            $candidates += "${env:LOCALAPPDATA}\Programs\Python\Python$ver\python.exe"
-            $candidates += "C:\Python$ver\python.exe"
-        }
+    $candidates = @("pythonw","python3w","python","python3","py")
+    foreach ($ver in @("314","313","312","311","310")) {
+        $candidates += "${env:ProgramFiles}\Python$ver\pythonw.exe"
+        $candidates += "${env:LOCALAPPDATA}\Programs\Python\Python$ver\pythonw.exe"
+        $candidates += "C:\Python$ver\pythonw.exe"
+        $candidates += "${env:ProgramFiles}\Python$ver\python.exe"
+        $candidates += "${env:LOCALAPPDATA}\Programs\Python\Python$ver\python.exe"
+        $candidates += "C:\Python$ver\python.exe"
     }
     foreach ($c in $candidates) {
         try { $v = & $c --version 2>&1; if ($v -match "Python 3") { return (Get-Command $c -ErrorAction SilentlyContinue).Source } } catch {}
     }
-    return "python"
+    return "pythonw"
 }
 $pythonExe = Find-Python
 
@@ -49,7 +50,7 @@ function Write-Log {
 function Get-ScriptPids {
     param($ScriptName)
     $pids = @()
-    Get-CimInstance Win32_Process -Filter "Name = 'python.exe'" -ErrorAction SilentlyContinue | ForEach-Object {
+    Get-CimInstance Win32_Process -Filter "Name = 'python.exe' OR Name = 'pythonw.exe' OR Name = 'python3.exe' OR Name = 'python3w.exe'" -ErrorAction SilentlyContinue | ForEach-Object {
         if ($_.CommandLine -match [regex]::Escape($ScriptName)) {
             $pids += $_.ProcessId
         }
@@ -66,7 +67,7 @@ function Kill-All {
             Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue
         }
     }
-    Get-CimInstance Win32_Process -Filter "Name = 'python.exe'" -ErrorAction SilentlyContinue | ForEach-Object {
+    Get-CimInstance Win32_Process -Filter "Name = 'python.exe' OR Name = 'pythonw.exe' OR Name = 'python3.exe' OR Name = 'python3w.exe'" -ErrorAction SilentlyContinue | ForEach-Object {
         if ($_.CommandLine -match "bridge_mitm_proxy|vol_hist_server") {
             Write-Log "  Killing python PID $($_.ProcessId): $($_.CommandLine)"
             Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue

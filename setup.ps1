@@ -30,19 +30,19 @@ function Find-Python {
         try { $ver = & $portable --version 2>&1; if ($ver -match "Python 3") { return $portable } } catch {}
     }
     $candidates = @(
-        "python", "python3"
-        "C:\Python314\python.exe"
-        "C:\Python313\python.exe"
-        "C:\Python312\python.exe"
-        "C:\Python311\python.exe"
-        "${env:ProgramFiles}\Python314\python.exe"
-        "${env:ProgramFiles}\Python313\python.exe"
-        "${env:ProgramFiles}\Python312\python.exe"
-        "${env:ProgramFiles}\Python311\python.exe"
-        "${env:LOCALAPPDATA}\Programs\Python\Python314\python.exe"
-        "${env:LOCALAPPDATA}\Programs\Python\Python313\python.exe"
-        "${env:LOCALAPPDATA}\Programs\Python\Python312\python.exe"
-        "${env:LOCALAPPDATA}\Programs\Python\Python311\python.exe"
+        "pythonw", "python3w", "python", "python3"
+        "C:\Python314\pythonw.exe", "C:\Python314\python.exe"
+        "C:\Python313\pythonw.exe", "C:\Python313\python.exe"
+        "C:\Python312\pythonw.exe", "C:\Python312\python.exe"
+        "C:\Python311\pythonw.exe", "C:\Python311\python.exe"
+        "${env:ProgramFiles}\Python314\pythonw.exe", "${env:ProgramFiles}\Python314\python.exe"
+        "${env:ProgramFiles}\Python313\pythonw.exe", "${env:ProgramFiles}\Python313\python.exe"
+        "${env:ProgramFiles}\Python312\pythonw.exe", "${env:ProgramFiles}\Python312\python.exe"
+        "${env:ProgramFiles}\Python311\pythonw.exe", "${env:ProgramFiles}\Python311\python.exe"
+        "${env:LOCALAPPDATA}\Programs\Python\Python314\pythonw.exe", "${env:LOCALAPPDATA}\Programs\Python\Python314\python.exe"
+        "${env:LOCALAPPDATA}\Programs\Python\Python313\pythonw.exe", "${env:LOCALAPPDATA}\Programs\Python\Python313\python.exe"
+        "${env:LOCALAPPDATA}\Programs\Python\Python312\pythonw.exe", "${env:LOCALAPPDATA}\Programs\Python\Python312\python.exe"
+        "${env:LOCALAPPDATA}\Programs\Python\Python311\pythonw.exe", "${env:LOCALAPPDATA}\Programs\Python\Python311\python.exe"
     )
     foreach ($c in $candidates) {
         try {

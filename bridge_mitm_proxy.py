@@ -3,7 +3,6 @@
 Bridge MITM Proxy — intercepts VolumetricaBridge ↔ CQG WebAPI WebSocket.
 Patches logon credentials and logs every protobuf message in both directions.
 """
-# made by illnoobis
 import asyncio
 import ssl
 import sys
@@ -18,25 +17,36 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 
 # ─── Configuration ─────────────────────────────────────────────────────────────
 PROXY_PORT          = 443
-LOGON_MIN_INTERVAL  = 15   # seconds to wait between LOGON messages
-_last_logon_time    = 0    # timestamp of last sent logon
-REAL_CQG_HOST       = None   # resolved from SNI_HOST below
+LOGON_MIN_INTERVAL  = 15
+_last_logon_time    = 0
 REAL_CQG_PORT       = 443
 SNI_HOST            = "demoapi.cqg.com"
+HIST_SNI_HOST       = "depth-it.historical.deepcharts.com"
+HIST_REAL_PORT      = 443
+
+# Resolve CQG IP: env var (set by start.bat before hosts redirect) or lazy fallback
+CQG_UPSTREAM_IP = os.environ.get("CQG_UPSTREAM_IP")
+if not CQG_UPSTREAM_IP:
+    import socket as _socket
+    try:
+        CQG_UPSTREAM_IP = _socket.getaddrinfo(SNI_HOST, REAL_CQG_PORT, _socket.AF_INET)[0][4][0]
+    except Exception:
+        CQG_UPSTREAM_IP = "208.48.16.22"
+
+HIST_UPSTREAM_IP = os.environ.get("HIST_UPSTREAM_IP")
+if not HIST_UPSTREAM_IP:
+    import socket as _socketh
+    try:
+        HIST_UPSTREAM_IP = _socketh.getaddrinfo(HIST_SNI_HOST, HIST_REAL_PORT, _socketh.AF_INET)[0][4][0]
+    except Exception:
+        HIST_UPSTREAM_IP = CQG_UPSTREAM_IP
 
 TARGET_PRIVATE_LABEL  = "AMPConnect"
 TARGET_CLIENT_APP_ID  = "AMPConnect"
 TARGET_CLIENT_VERSION = "7.0.238"
 
-# Resolve CQG IP dynamically to avoid hardcoding
-import socket as _socket
-if REAL_CQG_HOST is None:
-    try:
-        REAL_CQG_HOST = _socket.getaddrinfo(SNI_HOST, REAL_CQG_PORT, _socket.AF_INET)[0][4][0]
-        print(f"[*] Resolved {SNI_HOST} -> {REAL_CQG_HOST}")
-    except Exception:
-        REAL_CQG_HOST = "208.48.16.22"
-        print(f"[!] DNS resolution failed, using fallback {REAL_CQG_HOST}")
+print(f"[*] Real CQG: {SNI_HOST} -> {CQG_UPSTREAM_IP}")
+print(f"[*] Real Hist: {HIST_SNI_HOST} -> {HIST_UPSTREAM_IP}")
 
 CA_DIR   = os.path.join(os.path.dirname(__file__), "mitm_ca")
 CA_CERT  = os.path.join(CA_DIR, "ca.pem")
@@ -69,7 +79,6 @@ possible_paths = [
     os.path.join(_script_dir, "cqg_test"),
     os.path.join(_script_dir, "helpful", "cqg_test"),
 ]
-# Auto-detect: walk up parent dirs looking for cqg_test
 _parent = os.path.dirname(_script_dir)
 while _parent and _parent != os.path.dirname(_parent):
     _candidate = os.path.join(_parent, "cqg_test")
@@ -101,6 +110,13 @@ if not PROTOBUF_AVAILABLE:
 
 
 # ─── CA / Certificate management ───────────────────────────────────────────────
+CERT_SAN_DOMAINS = [
+    "demoapi.cqg.com",
+    "api.cqg.com",
+    "depth-it.historical.deepcharts.com",
+    "data-b.historical.deepcharts.com",
+]
+
 def ensure_ca():
     os.makedirs(CA_DIR, exist_ok=True)
     ca_exists  = os.path.exists(CA_CERT) and os.path.exists(CA_KEY)
@@ -144,7 +160,7 @@ def ensure_ca():
         csr = (
             x509.CertificateSigningRequestBuilder()
             .subject_name(x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, SNI_HOST)]))
-            .add_extension(x509.SubjectAlternativeName([x509.DNSName(SNI_HOST), x509.DNSName("api.cqg.com")]), critical=False)
+            .add_extension(x509.SubjectAlternativeName([x509.DNSName(d) for d in CERT_SAN_DOMAINS]), critical=False)
             .sign(srv_key, hashes.SHA256())
         )
         srv_cert = (
@@ -152,7 +168,7 @@ def ensure_ca():
             .subject_name(csr.subject).issuer_name(ca_cert.subject)
             .public_key(csr.public_key()).serial_number(x509.random_serial_number())
             .not_valid_before(now - timedelta(days=1)).not_valid_after(now + timedelta(days=3650))
-            .add_extension(x509.SubjectAlternativeName([x509.DNSName(SNI_HOST), x509.DNSName("api.cqg.com")]), critical=False)
+            .add_extension(x509.SubjectAlternativeName([x509.DNSName(d) for d in CERT_SAN_DOMAINS]), critical=False)
             .sign(ca_key, hashes.SHA256())
         )
         with open(CERT, "wb") as f: f.write(srv_cert.public_bytes(serialization.Encoding.PEM))
@@ -162,7 +178,7 @@ def ensure_ca():
 
 
 # ─── Connection keepalive ────────────────────────────────────────────────────────
-PING_INTERVAL = 10  # seconds between keepalive PINGs
+PING_INTERVAL = 10
 
 async def upstream_keepalive(cqg_w):
     """Send periodic PING frames upstream to CQG to prevent NAT/firewall timeouts."""
@@ -180,11 +196,14 @@ async def upstream_keepalive(cqg_w):
 
 
 async def upstream_health_check(upstream, interval=3):
-    """Exit if upstream writer is closing (t1 called abort())."""
+    """Exit if upstream writer is closing."""
     try:
         while True:
             await asyncio.sleep(interval)
-            if upstream._aborted or (upstream.writer and upstream.writer.is_closing()):
+            try:
+                if upstream._aborted or (upstream.writer and upstream.writer.is_closing()):
+                    return
+            except Exception:
                 return
     except asyncio.CancelledError:
         pass
@@ -213,6 +232,8 @@ class UpstreamConnection:
         self._replay_buffer = []
         self._capturing = True
         self._aborted = False
+        self._reconnect_buf = []  # data sent during reconnect window
+        self._reconnect_buf_lock = asyncio.Lock()
         self.writer = None
         self.reader = None
 
@@ -224,6 +245,19 @@ class UpstreamConnection:
             self._replay_buffer.append(frame_bytes)
             if len(self._replay_buffer) >= 50:
                 self._capturing = False
+
+    async def _write_with_lock(self, data):
+        """Write data, buffering during reconnect if writer is being swapped."""
+        async with self._reconnect_buf_lock:
+            if self._reconnect_buf is not None:
+                self._reconnect_buf.append(data)
+                return
+        if self.writer:
+            try:
+                self.writer.write(data)
+                await asyncio.wait_for(self.writer.drain(), timeout=5)
+            except Exception:
+                pass
 
     async def _close_old(self):
         try:
@@ -242,8 +276,9 @@ class UpstreamConnection:
         await self.writer.drain()
 
     async def reconnect(self):
-        await asyncio.sleep(2)
+        await asyncio.sleep(1)
         old_writer = self.writer
+        self.writer = None  # t1 writes will be buffered
         new_reader, new_writer = await asyncio.open_connection(
             self._host, self._port, ssl=self._ctx, server_hostname=self._sni)
         self._aborted = False
@@ -252,10 +287,15 @@ class UpstreamConnection:
             await new_writer.drain()
             for frame in self._replay_buffer:
                 new_writer.write(frame)
+            # Flush buffered data from reconnect window
+            async with self._reconnect_buf_lock:
+                for frame in self._reconnect_buf:
+                    new_writer.write(frame)
+                self._reconnect_buf = []
             await new_writer.drain()
         except Exception:
             pass
-        # Atomically swap — all future writes (from t1) go to the new, READY connection
+        # Atomically swap
         self.reader, self.writer = new_reader, new_writer
         if old_writer:
             try:
@@ -284,7 +324,7 @@ class UpstreamConnection:
         await self._close_old()
 
 
-# ─── WebSocket frame builder ────────────────────────────────────────────────────
+# ─── WebSocket frame builder / extractor ────────────────────────────────────
 def build_ws_frame(opcode: int, payload: bytes, fin: int = 1, mask: bool = True) -> bytes:
     hdr = bytearray([(0x80 if fin else 0) | opcode])
     mask_bit = 0x80 if mask else 0
@@ -302,7 +342,6 @@ def build_ws_frame(opcode: int, payload: bytes, fin: int = 1, mask: bool = True)
     return bytes(hdr) + payload
 
 
-# ─── WebSocket frame extractor ──────────────────────────────────────────────────
 class FrameBuffer:
     def __init__(self): self.buf = bytearray()
     def feed(self, data: bytes): self.buf.extend(data)
@@ -332,9 +371,48 @@ class FrameBuffer:
         return opcode, masked, mask_key, payload, raw_frame, fin
 
 
+# ─── Buffered writer wrapper (for historical — buffers until real writer set) ──
+class BufferedWriter:
+    """Holds a reference to a real writer; buffers writes until writer is assigned."""
+
+    def __init__(self):
+        self._writer = None
+        self._buf = []
+        self._set = asyncio.Event()
+
+    @property
+    def writer(self):
+        return self._writer
+
+    @writer.setter
+    def writer(self, w):
+        self._writer = w
+        if w is not None:
+            for data in self._buf:
+                w.write(data)
+            self._buf.clear()
+            self._set.set()
+
+    def write(self, data):
+        if self._writer is not None:
+            self._writer.write(data)
+        else:
+            self._buf.append(data)
+
+    async def drain(self):
+        if self._writer is not None:
+            await self._writer.drain()
+
+    def capture(self, _x):
+        pass
+
+    async def wait_ready(self):
+        if self._writer is None:
+            await asyncio.wait_for(self._set.wait(), timeout=30)
+
+
 # ─── Protobuf decoders ──────────────────────────────────────────────────────────
 def log_client_msg(payload: bytes, mask_key: bytes):
-    """Decode and log a ClientMsg (client→CQG direction)."""
     if not PROTOBUF_AVAILABLE: return
     try:
         raw = bytearray(payload)
@@ -352,7 +430,6 @@ def log_client_msg(payload: bytes, mask_key: bytes):
 
         if msg.HasField("ping"):
             log.debug("  [C->S] PING")
-
         if msg.HasField("pong"):
             log.debug("  [C->S] PONG")
 
@@ -373,16 +450,12 @@ def log_client_msg(payload: bytes, mask_key: bytes):
 
         for req in msg.non_timed_bar_requests:
             log.info(f"  [C->S] NON_TIMED_BAR_REQUEST: request_id={req.request_id}")
-
         for req in msg.time_and_sales_requests:
             log.info(f"  [C->S] TIME_AND_SALES_REQUEST: request_id={req.request_id}")
-
         for req in msg.information_requests:
             log.info(f"  [C->S] INFORMATION_REQUEST: id={req.id} subscribe={req.subscribe}")
-
         for req in msg.trade_subscriptions:
             log.info(f"  [C->S] TRADE_SUBSCRIPTION: id={req.id}")
-
         for req in msg.order_requests:
             log.info(f"  [C->S] ORDER_REQUEST: id={req.request_id}")
 
@@ -390,18 +463,14 @@ def log_client_msg(payload: bytes, mask_key: bytes):
         unmasked = bytearray(payload)
         for i in range(len(unmasked)): unmasked[i] ^= mask_key[i % 4]
         log.warning(f"  [C->S] Could not decode ClientMsg: {e}")
-        log.warning(f"  [C->S]   masked_hex={payload.hex()}")
-        log.warning(f"  [C->S]   unmasked_hex={bytes(unmasked[:48]).hex()}")
 
 
 def log_server_msg(payload: bytes):
-    """Decode and log a ServerMsg (CQG→client direction)."""
     if not PROTOBUF_AVAILABLE: return
     try:
         msg = ServerMsg()
         msg.ParseFromString(payload)
 
-        # ── Logon result ──────────────────────────────────────────────────────
         if msg.HasField("logon_result"):
             r = msg.logon_result
             level = logging.INFO if r.result_code == 0 else logging.ERROR
@@ -412,28 +481,23 @@ def log_server_msg(payload: bytes):
             if r.result_code != 0:
                 log.error(f"  [S->C] *** LOGON FAILED *** code={r.result_code} — '{r.text_message}'")
 
-        # ── Logged off ────────────────────────────────────────────────────────
         if msg.HasField("logged_off"):
             lo = msg.logged_off
             log.warning(f"  [S->C] LOGGED_OFF: code={lo.result_code} text='{lo.text_message}'")
 
-        # ── Ping / Pong ───────────────────────────────────────────────────────
         if msg.HasField("ping"):
             log.debug("  [S->C] PING from server")
         if msg.HasField("pong"):
             log.debug("  [S->C] PONG from server")
 
-        # ── User messages ─────────────────────────────────────────────────────
         for um in msg.user_messages:
             log.info(f"  [S->C] USER_MESSAGE: type={um.message_type} "
                      f"subject='{um.subject}' text='{um.text}'")
 
-        # ── Information reports ───────────────────────────────────────────────
         for ir in msg.information_reports:
             log.info(f"  [S->C] INFORMATION_REPORT: id={ir.id} "
                      f"status={ir.status_code} complete={ir.is_report_complete} "
                      f"text='{ir.text_message}'")
-            # Symbol resolution: contract_metadata (single ContractMetadata object)
             if ir.HasField("symbol_resolution_report"):
                 srr = ir.symbol_resolution_report
                 try:
@@ -444,7 +508,6 @@ def log_server_msg(payload: bytes):
                              f"tick={cm.tick_size} tickval={cm.tick_value}")
                 except Exception as e:
                     log.debug(f"    SYMBOL decode skipped: {e}")
-            # Accounts: brokerages → sales_series → accounts
             if ir.HasField("accounts_report"):
                 for brok in ir.accounts_report.brokerages:
                     log.info(f"    BROKERAGE: id={brok.id} name='{brok.name}'")
@@ -457,14 +520,12 @@ def log_server_msg(payload: bytes):
                             log.info(f"      ACCOUNT: id={acct.account_id} "
                                      f"name='{acct.name}' brok_id='{brok_id}'")
 
-        # ── Market data subscription statuses ─────────────────────────────────
         for s in msg.market_data_subscription_statuses:
             level = logging.INFO if s.status_code == 0 else logging.WARNING
             log.log(level, f"  [S->C] MKT_DATA_STATUS: contract_id={s.contract_id} "
                            f"status_code={s.status_code} level={s.level} "
                            f"text='{s.text_message}'")
 
-        # ── Real-time market data (ticks) — debug only ────────────────────────
         for rtd in msg.real_time_market_data:
             quote_types = {}
             prices = set()
@@ -478,11 +539,9 @@ def log_server_msg(payload: bytes):
             mv_count = len(rtd.market_values)
             mv_info = f" mv={mv_count}" if mv_count else ""
             price_info = f" prices={prices}" if prices else ""
-            # Log TRADE prices at INFO level so they're visible
             level = logging.INFO if 0 in quote_types and not rtd.is_snapshot else logging.DEBUG
             log.log(level, f"  [S->C] REAL_TIME_DATA: contract_id={rtd.contract_id} "
                       f"snapshot={rtd.is_snapshot} quotes={len(rtd.quotes)} [{desc}]{mv_info}{price_info}")
-            # Log MarketValues OHLC details
             for mv in rtd.market_values:
                 o = mv.scaled_open_price if mv.HasField("scaled_open_price") else None
                 h = mv.scaled_high_price if mv.HasField("scaled_high_price") else None
@@ -491,7 +550,6 @@ def log_server_msg(payload: bytes):
                 ys = mv.scaled_yesterday_settlement if mv.HasField("scaled_yesterday_settlement") else None
                 log.info(f"    [MV] contract={rtd.contract_id} O={o} H={h} L={l} C={c} YSettl={ys}")
 
-        # ── Time bar reports (historical OHLCV bars) ──────────────────────────
         for tbr in msg.time_bar_reports:
             level = logging.INFO if tbr.status_code == 0 else logging.ERROR
             log.log(level, f"  [S->C] TIME_BAR_REPORT: request_id={tbr.request_id} "
@@ -499,34 +557,26 @@ def log_server_msg(payload: bytes):
                            f"complete={tbr.is_report_complete} "
                            f"reached_start={tbr.reached_start_of_data} "
                            f"text='{tbr.text_message}'")
-            if tbr.status_code != 0:
-                log.error(f"  [S->C] *** TIME BAR ERROR *** status={tbr.status_code} — '{tbr.text_message}'")
 
-        # ── Non-timed bar reports ─────────────────────────────────────────────
         for nbr in msg.non_timed_bar_reports:
             level = logging.INFO if nbr.status_code == 0 else logging.ERROR
             log.log(level, f"  [S->C] NON_TIMED_BAR_REPORT: request_id={nbr.request_id} "
                            f"status={nbr.status_code} bars={len(nbr.non_timed_bars)} "
                            f"complete={nbr.is_report_complete} text='{nbr.text_message}'")
 
-        # ── Time and sales (historical ticks) ────────────────────────────────
-        # Fields: request_id, result_code, quotes (repeated), is_report_complete, text_message
         for tsr in msg.time_and_sales_reports:
             level = logging.INFO if tsr.result_code == 0 else logging.ERROR
             log.log(level, f"  [S->C] TIME_AND_SALES_REPORT: request_id={tsr.request_id} "
                            f"result_code={tsr.result_code} ticks={len(tsr.quotes)} "
                            f"complete={tsr.is_report_complete} text='{tsr.text_message}'")
-            if tsr.result_code != 0:
-                log.error(f"  [S->C] *** TIME_AND_SALES ERROR *** code={tsr.result_code} — '{tsr.text_message}'")
 
-        # ── Order / position statuses ─────────────────────────────────────────
         for os_ in msg.order_statuses:
             log.info(f"  [S->C] ORDER_STATUS: order_id={os_.order_id}")
         for ps in msg.position_statuses:
             log.info(f"  [S->C] POSITION_STATUS: account_id={ps.account_id}")
 
     except Exception as e:
-        log.error(f"  [S->C] Could not decode ServerMsg: {e} | hex={payload[:64].hex()}")
+        log.error(f"  [S->C] Could not decode ServerMsg: {e}")
 
 
 # ─── Logon patcher ─────────────────────────────────────────────────────────────
@@ -561,91 +611,20 @@ async def patch_logon_protobuf(payload: bytes, mask_key: bytes, fin: int, opcode
     return None
 
 
-# ─── TimeAndSales Server Message Patcher ─────────────────────────────────────────
-def patch_server_msg(payload: bytes, fin: int, opcode: int):
-    if not PROTOBUF_AVAILABLE:
-        return None
-    try:
-        msg = ServerMsg()
-        msg.ParseFromString(payload)
-        
-        patched = False
-        for tsr in msg.time_and_sales_reports:
-            if tsr.result_code == 0 and len(tsr.quotes) > 0:
-                # Check if any Best Bid or Best Ask already exists in this report
-                has_bba = any(q.type in (1, 2, 3, 4) for q in tsr.quotes)
-                if has_bba:
-                    log.info(f"  [PATCH] TimeAndSales already has BBA quotes. Skipping patch.")
-                    continue
-                
-                patched = True
-                log.info(f"  [PATCH] Injecting BBA quotes into TimeAndSales report (original ticks={len(tsr.quotes)})")
-                
-                new_quotes = []
-                last_price = None
-                
-                for quote in tsr.quotes:
-                    if quote.type == 0:  # TYPE_TRADE
-                        P = quote.scaled_price
-                        
-                        # Determine direction using aggressor side or tick rule
-                        is_buy = True
-                        if quote.HasField("sales_condition"):
-                            sc = quote.sales_condition
-                            if sc in (1, 5):  # HIT, SELL_SIDE_AGGRESSOR
-                                is_buy = False
-                            elif sc in (2, 4):  # TAKE, BUY_SIDE_AGGRESSOR
-                                is_buy = True
-                        elif last_price is not None:
-                            if P > last_price:
-                                is_buy = True
-                            elif P < last_price:
-                                is_buy = False
-                        
-                        last_price = P
-                        
-                        # Inject synthetic Best Bid and Best Ask ticks
-                        # Order chronologically: Bid, Ask, Trade
-                        bid_quote = Quote()
-                        bid_quote.type = 1  # TYPE_BESTBID
-                        bid_quote.scaled_price = P if is_buy else (P - 25)
-                        if quote.HasField("quote_utc_time"):
-                            bid_quote.quote_utc_time = quote.quote_utc_time
-                        if quote.HasField("price_yield"):
-                            bid_quote.price_yield = quote.price_yield
-                        new_quotes.append(bid_quote)
-                        
-                        ask_quote = Quote()
-                        ask_quote.type = 2  # TYPE_BESTASK
-                        ask_quote.scaled_price = (P + 25) if is_buy else P
-                        if quote.HasField("quote_utc_time"):
-                            ask_quote.quote_utc_time = quote.quote_utc_time
-                        if quote.HasField("price_yield"):
-                            ask_quote.price_yield = quote.price_yield
-                        new_quotes.append(ask_quote)
-                        
-                        # Add the Trade itself
-                        new_quotes.append(quote)
-                    else:
-                        new_quotes.append(quote)
-                
-                # Replace the quotes list
-                del tsr.quotes[:]
-                tsr.quotes.extend(new_quotes)
-                log.info(f"  [PATCH] Injection complete (new ticks={len(tsr.quotes)})")
-        
-        if patched:
-            return build_ws_frame(opcode, msg.SerializeToString(), fin=fin, mask=False)
-    except Exception as e:
-        log.error(f"  [PATCH] Failed to parse/patch ServerMsg: {e}")
-    return None
-
-
 # ─── Client → CQG forwarder ────────────────────────────────────────────────────
 async def forward_client_to_cqg(client_r, upstream, initial_remaining=b"", http_done=False, is_historical=False):
     buf = FrameBuffer()
     if initial_remaining:
         buf.feed(initial_remaining)
+
+    # If using BufferedWriter, wait for writer to be assigned
+    if hasattr(upstream, 'wait_ready'):
+        try:
+            await upstream.wait_ready()
+        except asyncio.TimeoutError:
+            log.error("[!] Timed out waiting for upstream writer on historical connection")
+            return
+
     while True:
         try:
             while True:
@@ -655,8 +634,13 @@ async def forward_client_to_cqg(client_r, upstream, initial_remaining=b"", http_
 
                 if opcode == 8:
                     if is_historical:
-                        log.info("  [C->S] CLOSE frame on HISTORICAL — ignoring (keeping vol_hist alive)")
-                        continue
+                        log.info("  [C->S] CLOSE frame on HISTORICAL — forwarding to upstream")
+                        try:
+                            upstream.writer.write(raw_frame)
+                            await asyncio.wait_for(upstream.writer.drain(), timeout=3)
+                        except Exception:
+                            pass
+                        return
                     log.info("  [C->S] WebSocket CLOSE frame — client is disconnecting.")
                     try:
                         upstream.writer.write(raw_frame)
@@ -672,7 +656,6 @@ async def forward_client_to_cqg(client_r, upstream, initial_remaining=b"", http_
                     except Exception:
                         if not is_historical:
                             upstream.abort()
-                            await asyncio.sleep(1)
                     continue
                 elif opcode == 10:
                     log.debug("  [C->S] PONG")
@@ -682,7 +665,6 @@ async def forward_client_to_cqg(client_r, upstream, initial_remaining=b"", http_
                     except Exception:
                         if not is_historical:
                             upstream.abort()
-                            await asyncio.sleep(1)
                     continue
 
                 if opcode == 2 and masked:
@@ -697,7 +679,6 @@ async def forward_client_to_cqg(client_r, upstream, initial_remaining=b"", http_
                         except Exception:
                             if not is_historical:
                                 upstream.abort()
-                                await asyncio.sleep(1)
                     else:
                         try:
                             upstream.writer.write(raw_frame)
@@ -711,7 +692,6 @@ async def forward_client_to_cqg(client_r, upstream, initial_remaining=b"", http_
                     except Exception:
                         if not is_historical:
                             upstream.abort()
-                            await asyncio.sleep(1)
 
             chunk = await client_r.read(65536)
             if not chunk:
@@ -739,10 +719,7 @@ async def forward_client_to_cqg(client_r, upstream, initial_remaining=b"", http_
             except Exception:
                 if not is_historical:
                     upstream.abort()
-                    await asyncio.sleep(1)
 
-        except asyncio.CancelledError:
-            raise
         except asyncio.CancelledError:
             raise
         except Exception as e:
@@ -826,7 +803,6 @@ async def forward_cqg_to_client(cqg_r, client_w, cqg_w=None, is_historical=False
 
 
 def process_and_patch_server_msg(payload: bytes, fin: int, opcode: int):
-    """Logs server messages and patches if needed."""
     if PROTOBUF_AVAILABLE:
         try:
             log_server_msg(payload)
@@ -876,51 +852,49 @@ async def handle(client_r, client_w):
         is_historical = True
 
     if handshake_bytes and not is_historical:
-        upstream = UpstreamConnection(REAL_CQG_HOST, REAL_CQG_PORT, client_ctx, SNI_HOST, handshake_bytes)
+        upstream = UpstreamConnection(CQG_UPSTREAM_IP, REAL_CQG_PORT, client_ctx, SNI_HOST, handshake_bytes)
     else:
         upstream = None
 
-    # Capture the initial post-handshake data as replay frames
     if remaining and upstream is not None:
         upstream.capture(remaining)
 
-    # Client→CQG forwarder runs once (persists across reconnects for CQG)
-    # For historical connections, forwarder uses dummy object with swappable writer
-    class _WriterHolder:
-        def __init__(self, w=None): self.writer = w
-        def capture(self, _x): pass
+    cqg_capture = BufferedWriter() if is_historical else None
 
-    cqg_capture = _WriterHolder()
-    if is_historical:
-        t1 = asyncio.create_task(forward_client_to_cqg(client_r, cqg_capture, initial_remaining=remaining if not http_done else b"", http_done=http_done, is_historical=True))
-    else:
-        t1 = asyncio.create_task(forward_client_to_cqg(client_r, upstream, initial_remaining=remaining if not http_done else b"", http_done=http_done, is_historical=False))
+    # For CQG: remaining is already in upstream replay buffer (sent via connect())
+    # For historical: no replay buffer, so pass remaining as initial data
+    t1 = asyncio.create_task(forward_client_to_cqg(
+        client_r,
+        cqg_capture if is_historical else upstream,
+        initial_remaining=remaining if is_historical else b"",
+        http_done=http_done,
+        is_historical=is_historical
+    ))
 
-    # Main connection loop — reconnect upstream transparently when CQG drops
     first_connect = True
     while True:
         try:
             if is_historical:
-                log.info(f"[+] Routing '{sni or 'None'}' locally to mock Volumetrica Historical Server on port 12010 (path='{path}')")
+                log.info(f"[+] Routing '{sni or 'None'}' to vol_hist_server at 127.0.0.1:12010")
                 cqg_r, cqg_w = await asyncio.open_connection("127.0.0.1", 12010, ssl=None)
                 cqg_capture.writer = cqg_w
-                log.info(f"[+] Local Volumetrica mock connection established (127.0.0.1:12010)")
+                log.info("[+] vol_hist_server connection established (127.0.0.1:12010)")
                 if handshake_bytes:
                     cqg_w.write(handshake_bytes)
                     await asyncio.wait_for(cqg_w.drain(), timeout=5)
             else:
                 if upstream is None:
-                    upstream = UpstreamConnection(REAL_CQG_HOST, REAL_CQG_PORT, client_ctx, SNI_HOST, handshake_bytes)
+                    upstream = UpstreamConnection(CQG_UPSTREAM_IP, REAL_CQG_PORT, client_ctx, SNI_HOST, handshake_bytes)
                 if first_connect:
                     await upstream.connect()
                     first_connect = False
                 else:
                     await upstream.reconnect()
                 cqg_r, cqg_w = upstream.reader, upstream.writer
-                log.info(f"[+] Upstream CQG connection established ({REAL_CQG_HOST}:{REAL_CQG_PORT})")
+                log.info(f"[+] Upstream CQG connection established ({CQG_UPSTREAM_IP}:{REAL_CQG_PORT})")
 
         except Exception as e:
-            log.error(f"[!] Cannot establish upstream/mock connection: {e}")
+            log.error(f"[!] Cannot establish upstream connection: {e}")
             if upstream is not None:
                 await upstream.close()
             client_w.close()
@@ -935,10 +909,6 @@ async def handle(client_r, client_w):
             t3 = asyncio.create_task(upstream_keepalive(cqg_w))
             t4 = asyncio.create_task(upstream_health_check(upstream))
 
-        # Poll until t1 (client) or t2 (CQG→client) completes.
-        # We poll instead of using asyncio.wait() because on Windows/IOCP
-        # task completion callbacks may not fire correctly when tasks are
-        # stuck on uncancellable IOCP operations (Python 3.14+).
         poll_interval = 0.05
         while True:
             if t1.done():
@@ -952,13 +922,13 @@ async def handle(client_r, client_w):
             await asyncio.sleep(poll_interval)
 
         if t1.done():
-            log.info("[-] Client disconnected (C->S forwarder exited).")
+            log.info("[-] Client disconnected.")
             break
 
         if is_historical:
+            log.info("[-] Historical upstream connection lost — will reconnect on next client request")
             break
 
-        # Cancel t4 (health check) — it's just sleeping and safe to cancel.
         if t4 is not None and not t4.done():
             t4.cancel()
 
@@ -990,7 +960,8 @@ async def main():
     server = await asyncio.start_server(handle, "0.0.0.0", PROXY_PORT, ssl=server_ctx)
     log.info("=" * 60)
     log.info(f"[*] Bridge MITM Proxy listening on 0.0.0.0:{PROXY_PORT}")
-    log.info(f"[*] Upstream: {REAL_CQG_HOST}:{REAL_CQG_PORT} (SNI={SNI_HOST})")
+    log.info(f"[*] Upstream CQG: {CQG_UPSTREAM_IP}:{REAL_CQG_PORT} (SNI={SNI_HOST})")
+    log.info(f"[*] Upstream Hist: {HIST_UPSTREAM_IP}:{HIST_REAL_PORT} (SNI={HIST_SNI_HOST})")
     log.info(f"[*] Full log: {LOGFILE}")
     log.info("=" * 60)
 
@@ -1003,4 +974,3 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         log.info("[*] Shutdown")
-

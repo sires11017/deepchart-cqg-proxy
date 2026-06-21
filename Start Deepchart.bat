@@ -11,6 +11,7 @@ start /b "" cmd /c "%~f0 --worker >nul 2>&1"
 exit /b 0
 
 :main
+:: ── Find pythonw ─────────────────────────────────────────────────────────
 set "PYTHONW="
 for %%v in (pythonw python3w py) do (
     for /f "delims=" %%a in ('where %%v 2^>nul') do (
@@ -38,10 +39,10 @@ taskkill /F /IM VolumetricaBridge.exe >nul 2>&1
 taskkill /F /IM Deepchart.exe >nul 2>&1
 timeout /t 3 /nobreak >nul
 
-start "" "%PYTHONW%" "%~dp0vol_hist_server.py"
+start /b "" "%PYTHONW%" "%~dp0vol_hist_server.py" >nul 2>&1
 timeout /t 3 /nobreak >nul
 
-start "" "%PYTHONW%" "%~dp0bridge_mitm_proxy.py"
+start /b "" "%PYTHONW%" "%~dp0bridge_mitm_proxy.py" >nul 2>&1
 timeout /t 3 /nobreak >nul
 
 set "DC_PATH=%~dp0patched_run"
