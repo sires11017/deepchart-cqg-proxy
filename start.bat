@@ -98,8 +98,37 @@ if not exist "%DC_PATH%\Deepchart.exe" (
     )
 ) else ( echo    [+] Found at %DC_PATH% )
 
+:: ── Apply profiles (templates, colors, settings, workspaces) ─────────────
+echo [5/8] Applying user profiles...
+powershell -NoProfile -Command ^
+  "$r='%~dp0';" ^
+  "$p=Join-Path $r 'profiles';" ^
+  "$t=Join-Path $r 'patched_run\data';" ^
+  "if(Test-Path $p){" ^
+    "New-Item $t -ItemType Directory -Force|Out-Null;" ^
+    "Get-ChildItem $p -Directory|ForEach-Object{" ^
+      "$d=Join-Path $t $_.Name;" ^
+      "Copy-Item $_.FullName $d -Recurse -Force;" ^
+    "};" ^
+    "Get-ChildItem $p -File|ForEach-Object{" ^
+      "Copy-Item $_.FullName $t -Force;" ^
+    "};" ^
+    "Write-Host '   [+] Templates, workspaces, settings applied' -ForegroundColor Green;" ^
+  "}else{Write-Host '   [-] No profiles/ found'}"
+powershell -NoProfile -Command ^
+  "$r='%~dp0';" ^
+  "$s=Join-Path $r 'profiles\Roaming';" ^
+  "$d=\"$env:APPDATA\Deepchart\";" ^
+  "if(Test-Path $s){" ^
+    "New-Item $d -ItemType Directory -Force|Out-Null;" ^
+    "Get-ChildItem $s|ForEach-Object{" ^
+      "Copy-Item $_.FullName $d -Force;" ^
+    "};" ^
+    "Write-Host '   [+] Roaming config applied' -ForegroundColor Green;" ^
+  "}else{Write-Host '   [-] No profiles/Roaming/ found'}"
+
 :: ── Kill old processes ────────────────────────────────────────────────────
-echo [5/8] Stopping old proxy processes only...
+echo [6/9] Stopping old proxy processes only...
 for %%p in (VolumetricaBridge Deepchart) do (
     taskkill /F /IM %%p.exe >nul 2>&1
 )
@@ -107,7 +136,7 @@ powershell -NoProfile -Command "Get-CimInstance Win32_Process -Filter \"Name = '
 timeout /t 2 /nobreak >nul
 
 :: ── Start servers ─────────────────────────────────────────────────────────
-echo [6/8] Starting proxy servers...
+echo [7/9] Starting proxy servers...
 
 start "Hist Server" "%PYTHON%" "%~dp0vol_hist_server.py"
 echo    [+] Historical Server starting...
@@ -118,12 +147,12 @@ echo    [+] Bridge Proxy starting...
 timeout /t 3 /nobreak >nul
 
 :: ── Launch VolumetricaBridge ──────────────────────────────────────────────
-echo [7/8] Launching VolumetricaBridge...
+echo [8/9] Launching VolumetricaBridge...
 start "VBridge" "%DC_PATH%\bridge\VolumetricaBridge.exe"
 timeout /t 6 /nobreak >nul
 
 :: ── Launch Deepchart ──────────────────────────────────────────────────────
-echo [8/8] Launching Deepchart...
+echo [9/9] Launching Deepchart...
 start "Deepchart" "%DC_PATH%\Deepchart.exe"
 
 echo.
