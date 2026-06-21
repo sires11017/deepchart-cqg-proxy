@@ -39,6 +39,9 @@ Thumbs.db
 # Backups
 *.bak*
 
+# Allow Deepchart.Original.exe to be tracked (private repo — needed for one-click)
+!patched_run/Deepchart.Original.exe
+
 # AI agent session memory (local only)
 AGENTS.md
 MEMORY.md

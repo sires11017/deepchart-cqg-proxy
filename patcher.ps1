@@ -68,6 +68,15 @@ Get-ChildItem $target -Recurse -Include "testwrite.*" | Remove-Item -Force -Erro
 
 Write-Host "[+] Deepchart copied to $target"
 
+# ── Save original Deepchart.exe before overwriting ─────────────────────────
+$originalExe = Join-Path $target "Deepchart.exe"
+$savedExe = Join-Path $target "Deepchart.Original.exe"
+if (Test-Path $originalExe) {
+    if (Test-Path $savedExe) { Remove-Item -Force $savedExe -ErrorAction SilentlyContinue }
+    Rename-Item -Path $originalExe -NewName "Deepchart.Original.exe" -Force
+    Write-Host "[+] Saved original Deepchart as Deepchart.Original.exe"
+}
+
 # ── Compile Launcher.cs → Deepchart.exe ─────────────────────────────────────
 $launcherCs = Join-Path $root "Launcher.cs"
 $launcherExe = Join-Path $target "Deepchart.exe"
@@ -89,9 +98,9 @@ if (Test-Path $launcherCs) {
 
     if (-not $csc) {
         Write-Host "[!] C# compiler (csc.exe) not found. Compile manually:"
-        Write-Host "    csc.exe /out:`"$launcherExe`" `"$launcherCs`""
+        Write-Host "    csc.exe /r:System.Core.dll /out:`"$launcherExe`" `"$launcherCs`""
     } else {
-        & $csc /out:"$launcherExe" "$launcherCs" 2>&1 | ForEach-Object { Write-Host "       $_" }
+        & $csc /r:System.Core.dll /out:"$launcherExe" "$launcherCs" 2>&1 | ForEach-Object { Write-Host "       $_" }
         if (Test-Path $launcherExe) {
             Write-Host "[+] Compiled: patched Deepchart.exe ($((Get-Item $launcherExe).Length) bytes)"
         } else {
