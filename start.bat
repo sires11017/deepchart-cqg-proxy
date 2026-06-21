@@ -22,8 +22,8 @@ exit /b 0
 ::   - Installs pip packages
 ::   - Fixes hosts file
 ::   - Applies profiles
-;;   - Starts proxy servers
-;;   - Launches the real Deepchart
+::   - Starts proxy servers
+::   - Launches the real Deepchart
 :: ═══════════════════════════════════════════════════════════════════════════════
 
 :: ── Launch the all-in-one launcher ──────────────────────────────────────────

@@ -263,7 +263,7 @@ class Program
                 foreach (var f in Directory.GetFiles(pyDir, "python*._pth"))
                 {
                     string content = File.ReadAllText(f);
-                    content = content.Replace("import site", "#import site");
+                    content = content.Replace("#import site", "import site");
                     File.WriteAllText(f, content);
                 }
 
