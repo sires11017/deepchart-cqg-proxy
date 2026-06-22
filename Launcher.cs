@@ -604,12 +604,16 @@ class Program
             "-NoProfile -Command \"Get-ChildItem '" + newRoot + "' -Recurse -File | Unblock-File -ErrorAction SilentlyContinue\"",
             null, "Unblock-File");
 
-        // Launch the REAL Deepchart (saved as Deepchart.Original.exe by patcher)
-        string appExe = Path.Combine(newRoot, "Deepchart.Original.exe");
+        // Launch the REAL Deepchart (patched_run\Deepchart_app.exe or Deepchart.Original.exe)
+        string appExe = Path.Combine(newRoot, "Deepchart_app.exe");
         if (!File.Exists(appExe))
         {
-            Log("Deepchart.Original.exe not found at " + appExe);
-            return;
+            appExe = Path.Combine(newRoot, "Deepchart.Original.exe");
+            if (!File.Exists(appExe))
+            {
+                Log("No Deepchart_app.exe or Deepchart.Original.exe found in " + newRoot);
+                return;
+            }
         }
 
         try
