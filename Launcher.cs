@@ -376,7 +376,7 @@ class Program
             string hostsPath = Path.Combine(Environment.SystemDirectory, "drivers", "etc", "hosts");
             string content = File.ReadAllText(hostsPath);
             string[] domains = {
-                "demoapi.cqg.com", "api.cqg.com",
+                "real.deepcharts.com", "depth-it.deepcharts.com",
                 "depth-it.historical.deepcharts.com", "data-b.historical.deepcharts.com"
             };
 

@@ -846,7 +846,7 @@ async def handle(client_r, client_w):
             remaining = bytes(initial_buf)
 
     is_historical = False
-    if sni and ("historical" in sni.lower() or "deepcharts" in sni.lower()):
+    if sni and "historical" in sni.lower():
         is_historical = True
     elif not sni and http_done and (path == "/" or "443" not in path):
         is_historical = True

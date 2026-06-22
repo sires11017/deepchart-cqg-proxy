@@ -24,8 +24,8 @@ if not defined LOCAL_IP (
 echo Detected IP: %LOCAL_IP%
 
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-  "$e1='%LOCAL_IP% demoapi.cqg.com';" ^
-  "$e2='%LOCAL_IP% api.cqg.com';" ^
+  "$e1='%LOCAL_IP% real.deepcharts.com';" ^
+  "$e2='%LOCAL_IP% depth-it.deepcharts.com';" ^
   "$e3='%LOCAL_IP% depth-it.historical.deepcharts.com';" ^
   "$e4='%LOCAL_IP% data-b.historical.deepcharts.com';" ^
   "$path=Join-Path ([Environment]::SystemDirectory) 'drivers\etc\hosts';" ^
